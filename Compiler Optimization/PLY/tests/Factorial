@@ -1,0 +1,55 @@
+VAR
+    FLOAT _li, _x, _y, _z, _a1, _a2, _aux, _aux2
+    INT _cont := 1
+V_END
+MODULE _FACTORIAL
+    _z := 1.00
+    FOR _li := _y > 0.00 , -1.00;
+		_z := _z * _li
+	F_END
+M_END
+MODULE _EXPONENCIAL 
+    _z := 1.00
+    FOR _li := 0.00 < _y , 1.00;
+		_z := _z * _x
+	F_END
+M_END
+MODULE _MAIN
+    LOOP _cont != 0;
+
+        PRINT ("1. Calcular X! " + "n_l")
+        PRINT ("2. Calcular X^Y " + "n_l")
+        PRINT ("3. Calcular e^X " + "n_l")
+        PRINT ("0. Salir " + "n_l")
+        READ (_cont)
+
+        CON _cont == 1; 
+            PRINT ("Inserte el valor de X: ")
+            READ (_y)
+            USE _FACTORIAL
+        C_END
+
+        CON _cont == 2; 
+            PRINT ("Inserte el valor de X: ")
+            READ (_x)
+            PRINT ("Inserte el valor de Y: ")
+            READ (_y)
+            USE _EXPONENCIAL
+        C_END
+
+        CON _cont == 3; 
+            PRINT ("Inserte el valor de X: ")
+            READ (_x)
+            _aux := 0.00
+            FOR _y := 0.00 < 10.00 , 1.00;
+                USE _EXPONENCIAL
+                _a1 := _z
+                USE _FACTORIAL
+                _a2 := _z
+                _aux := _aux + (_a1 / _a2)    
+	        F_END
+            _z := _aux
+        C_END
+        PRINT ("Resultado: " + _z + "n_l")
+    L_END
+M_END

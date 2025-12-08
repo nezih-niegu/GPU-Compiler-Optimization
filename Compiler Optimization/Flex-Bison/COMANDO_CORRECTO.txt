@@ -1,0 +1,32 @@
+═══════════════════════════════════════════════════════════════
+  COMANDO CORRECTO PARA EJECUTAR EL COMPILADOR
+═══════════════════════════════════════════════════════════════
+
+ NO uses esto (no funciona en zsh):
+   echo "program tensor_test
+   tensor A[100,50];
+   ..."
+
+USA esto (funciona perfectamente):
+   printf "program tensor_test\ntensor A[100,50];\ntensor B[50,200];\nbegin\nC := A @matmul B;\nD := A + A;\nE := @transpose(A);\nF := @reduce(A, 0);\nend\n" | ./compiler
+
+═══════════════════════════════════════════════════════════════
+  OPCIONES MÁS FÁCILES:
+═══════════════════════════════════════════════════════════════
+
+Opción 1: Usar el script incluido
+   ./ejecutar.sh
+
+Opción 2: Copiar y pegar este comando completo:
+   printf "program tensor_test\ntensor A[100,50];\ntensor B[50,200];\nbegin\nC := A @matmul B;\nD := A + A;\nE := @transpose(A);\nF := @reduce(A, 0);\nend\n" | ./compiler
+
+═══════════════════════════════════════════════════════════════
+  RECORDATORIOS IMPORTANTES:
+═══════════════════════════════════════════════════════════════
+
+1. NO pongas espacios después de las comas: [100,50] 
+2. Usa \n para saltos de línea en printf
+3. Todas las líneas terminan con punto y coma
+
+═══════════════════════════════════════════════════════════════
+

@@ -1,0 +1,79 @@
+VAR
+	INT _matriz1[5][5]
+	INT _matriz2[5][5]
+	INT _matrizr[5][5] := 0
+	INT _m1x, _m1y, _m2x, _m2y, _li, _lj, _e, _x
+V_END
+MODULE _MAIN
+	
+	PRINT ("Inserte el alto de la matriz 1: ")
+	READ (_m1y)
+	PRINT ("Inserte el ancho de la matriz 1: ")
+	READ (_m1x)
+	PRINT ("Inserte el alto de la matriz 2: ")
+	READ (_m2y)
+	PRINT ("Inserte el ancho de la matriz 2: ")
+	READ (_m2x)
+
+	FOR _lj := 0 < _m1y , 1;
+		FOR _li := 0 < _m1x , 1;
+			PRINT ("Inserte m1[" + _lj + "][" + _li + "]: ")
+			READ (_matriz1[_li][_lj])
+		F_END
+	F_END
+
+	FOR _lj := 0 < _m2y , 1;
+		FOR _li := 0 < _m2x , 1;
+			PRINT ("Inserte m2[" + _lj + "][" + _li + "]: ")
+			READ(_matriz2[_li][_lj])
+		F_END
+	F_END
+
+	PRINT ("Inserte 1 para multiplicar matrices y 2 para sumar matrices: ")
+	READ (_x)
+
+	CON ((_x == 1) && (_m1x == _m2y));
+		FOR _lj := 0 < _m2y , 1;
+			FOR _li := 0 < _m1x , 1;
+				FOR _e := 0 < _m1x , 1;
+					_matrizr[_li][_lj] := _matrizr[_li][_lj] + _matriz1[_li][_e] * _matriz2[_e][_li]
+				F_END
+			F_END
+		F_END
+	ELSE
+		CON ((_x == 2) && (_m1x == _m2x) && (_m1y == _m2y));
+			FOR _lj := 0 < _m2y , 1;
+				FOR _li := 0 < _m1x , 1;
+					_matrizr[_li][_lj] := _matriz1[_li][_lj] + _matriz2[_li][_lj]
+				F_END
+			F_END
+		ELSE 
+			PRINT ("NO SE PUEDE OPERAR MATRICES DISTINTAS" + "n_l")
+		C_END
+	C_END
+
+	FOR _lj := 0 < _m2y , 1;
+		FOR _li := 0 < _m1x , 1;
+			PRINT (_matriz1[_li][_lj] + " ")
+		F_END
+		PRINT("n_l")
+	F_END
+
+	PRINT("n_l")
+
+	FOR _lj := 0 < _m2y , 1;
+		FOR _li := 0 < _m1x , 1;
+			PRINT (_matriz2[_li][_lj] + " ")
+		F_END
+		PRINT("n_l")
+	F_END
+
+	PRINT("n_l")
+
+	FOR _lj := 0 < _m2y , 1;
+		FOR _li := 0 < _m1x , 1;
+			PRINT (_matrizr[_li][_lj] + " ")
+		F_END
+		PRINT("n_l")
+	F_END
+M_END

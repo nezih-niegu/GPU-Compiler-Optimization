@@ -1,0 +1,27 @@
+VAR
+	INT _matriz1[2][3][3]
+	INT _matriz2 := 2
+	INT _matrizr := 3
+	INT _m1x
+V_END
+MODULE _MAIN
+    PRINT ("HOLA MUNDO")
+	CON (_RD == 1) && (_RD != 0);
+		_MA := _n3 / 4
+		_MA := _n2 / 8
+		CON _RD == 12;
+			_MA := (-4 - -8)/ 6
+			_MA := _n2 / 7
+		C_END
+	ELSE 
+		_cO := _MA *24
+	C_END
+	LOOP _MA < 24;
+		_n6 := 28
+		_n4 := 42.5
+		_MA := _n4 - -2 * -243
+	L_END 
+	FOR _n3 := 3 > 20 , 5;
+		_cO := _cO + 5
+	F_END
+M_END

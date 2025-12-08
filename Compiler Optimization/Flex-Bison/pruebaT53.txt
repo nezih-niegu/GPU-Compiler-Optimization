@@ -1,0 +1,5 @@
+program tres
+int: x
+begin
+   x := 4 + 4
+end

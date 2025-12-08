@@ -1,0 +1,37 @@
+VAR
+	INT _v1[10]
+	INT _m1y, _li, _lj, _x, _y, _z, _aux
+    INT _cont := 1
+V_END
+MODULE _MAIN
+	
+    LOOP _cont == 1;
+
+	PRINT ("Inserte el tamano del vector: ")
+	READ (_m1y)
+
+    FOR _lj := 0 < _m1y , 1;
+		PRINT ("Inserte v[" + _lj + "]: ")
+		READ (_v1[_lj])
+	F_END
+
+    _y := _m1y - 1
+    FOR _lj := 0 < _m1y , 1;
+		FOR _li := 0 < _y , 1;
+            _z := _li + 1
+			CON _v1[_li] > _v1[_z]; 
+                _aux := _v1[_z]
+                _v1[_z] := _v1[_li]
+                _v1[_li] := _aux
+            C_END
+		F_END
+	F_END
+
+    FOR _li := 0 < _m1y , 1;
+		PRINT (_v1[_li] + " ")
+	F_END
+    PRINT("n_l")
+    PRINT ("Desea ordenar otro vector? (1 Si/0 No): ")
+	READ (_cont)
+    L_END
+M_END

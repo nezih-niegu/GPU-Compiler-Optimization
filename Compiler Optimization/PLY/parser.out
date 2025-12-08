@@ -1,0 +1,2247 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> VA SKP M
+Rule 2     VA -> VAR SKP VX V_END
+Rule 3     VX -> VX VY
+Rule 4     VX -> VY
+Rule 5     VY -> VFD
+Rule 6     VY -> VFU
+Rule 7     VY -> VID
+Rule 8     VY -> VIU
+Rule 9     VY -> EMPTY
+Rule 10    VFD -> FLOAT VAX VASS NUM DOT NUM SKP
+Rule 11    VFU -> FLOAT VAX SKP
+Rule 12    VID -> INT VAX VASS NUM SKP
+Rule 13    VIU -> INT VAX SKP
+Rule 14    VAX -> VAX COMMA VAA
+Rule 15    VAX -> VAA
+Rule 16    VAA -> ID
+Rule 17    VAA -> ID DIM
+Rule 18    DIM -> DIM DIMY
+Rule 19    DIM -> DIMY
+Rule 20    DIMY -> LBRACK NID RBRACK
+Rule 21    M -> MX SKP M
+Rule 22    M -> EMPTY
+Rule 23    MX -> MODULE MID SKP A MY
+Rule 24    MID -> ID
+Rule 25    MY -> M_END
+Rule 26    A -> A AX SKP
+Rule 27    A -> EMPTY
+Rule 28    AX -> RD
+Rule 29    AX -> PR
+Rule 30    AX -> CD
+Rule 31    AX -> LP
+Rule 32    AX -> FR
+Rule 33    AX -> AR
+Rule 34    AX -> US
+Rule 35    AX -> EMPTY
+Rule 36    PR -> PRINT LPAREN PX RPAREN
+Rule 37    PX -> PX PLUS PX
+Rule 38    PX -> STR
+Rule 39    PX -> VAA
+Rule 40    RD -> READ LPAREN VAA RPAREN
+Rule 41    US -> USE ID
+Rule 42    CD -> CON EL CDX SKP A CDE CDZ
+Rule 43    CDE -> CDY SKP A
+Rule 44    CDE -> EMPTY
+Rule 45    CDX -> PYC
+Rule 46    CDY -> ELSE
+Rule 47    CDZ -> C_END
+Rule 48    LP -> LOOP EL LPX SKP A LPY
+Rule 49    LPX -> PYC
+Rule 50    LPY -> L_END
+Rule 51    FR -> FOR FRX SKP A FRY
+Rule 52    FRX -> ID VASS NID SL NID COMMA NID PYC
+Rule 53    FRY -> F_END
+Rule 54    AR -> VAA VASS EA
+Rule 55    EA -> EA PLUS TA
+Rule 56    EA -> EA MINUS TA
+Rule 57    EA -> TA
+Rule 58    TA -> TA TIMES FA
+Rule 59    TA -> TA DIVIDE FA
+Rule 60    TA -> FA
+Rule 61    FA -> NID
+Rule 62    FA -> LPAREN EA RPAREN
+Rule 63    EL -> EL OR TL
+Rule 64    EL -> TL
+Rule 65    TL -> TL AND FL
+Rule 66    TL -> FL
+Rule 67    FL -> FL SL PL
+Rule 68    FL -> PL
+Rule 69    PL -> NID
+Rule 70    PL -> LPAREN EL RPAREN
+Rule 71    SL -> GT
+Rule 72    SL -> GTE
+Rule 73    SL -> LT
+Rule 74    SL -> LTE
+Rule 75    SL -> EQ
+Rule 76    SL -> NEQ
+Rule 77    NID -> VAA
+Rule 78    NID -> NUM
+Rule 79    NID -> NUM DOT NUM
+Rule 80    EMPTY -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 65
+COMMA                : 14 52
+CON                  : 42
+C_END                : 47
+DIVIDE               : 59
+DOT                  : 10 79
+ELSE                 : 46
+EQ                   : 75
+FLOAT                : 10 11
+FOR                  : 51
+F_END                : 53
+GT                   : 71
+GTE                  : 72
+ID                   : 16 17 24 41 52
+INT                  : 12 13
+LBRACK               : 20
+LOOP                 : 48
+LPAREN               : 36 40 62 70
+LT                   : 73
+LTE                  : 74
+L_END                : 50
+MINUS                : 56
+MODULE               : 23
+M_END                : 25
+NEQ                  : 76
+NUM                  : 10 10 12 78 79 79
+OR                   : 63
+PLUS                 : 37 55
+PRINT                : 36
+PYC                  : 45 49 52
+RBRACK               : 20
+READ                 : 40
+RPAREN               : 36 40 62 70
+SKP                  : 1 2 10 11 12 13 21 23 26 42 43 48 51
+STR                  : 38
+TIMES                : 58
+USE                  : 41
+VAR                  : 2
+VASS                 : 10 12 52 54
+V_END                : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+A                    : 23 26 42 43 48 51
+AR                   : 33
+AX                   : 26
+CD                   : 30
+CDE                  : 42
+CDX                  : 42
+CDY                  : 43
+CDZ                  : 42
+DIM                  : 17 18
+DIMY                 : 18 19
+EA                   : 54 55 56 62
+EL                   : 42 48 63 70
+EMPTY                : 9 22 27 35 44
+FA                   : 58 59 60
+FL                   : 65 66 67
+FR                   : 32
+FRX                  : 51
+FRY                  : 51
+LP                   : 31
+LPX                  : 48
+LPY                  : 48
+M                    : 1 21
+MID                  : 23
+MX                   : 21
+MY                   : 23
+NID                  : 20 52 52 52 61 69
+PL                   : 67 68
+PR                   : 29
+PX                   : 36 37 37
+RD                   : 28
+S                    : 0
+SL                   : 52 67
+TA                   : 55 56 57 58 59
+TL                   : 63 64 65
+US                   : 34
+VA                   : 1
+VAA                  : 14 15 39 40 54 77
+VAX                  : 10 11 12 13 14
+VFD                  : 5
+VFU                  : 6
+VID                  : 7
+VIU                  : 8
+VX                   : 2 3
+VY                   : 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . VA SKP M
+    (2) VA -> . VAR SKP VX V_END
+
+    VAR             shift and go to state 3
+
+    S                              shift and go to state 1
+    VA                             shift and go to state 2
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> VA . SKP M
+
+    SKP             shift and go to state 4
+
+
+state 3
+
+    (2) VA -> VAR . SKP VX V_END
+
+    SKP             shift and go to state 5
+
+
+state 4
+
+    (1) S -> VA SKP . M
+    (21) M -> . MX SKP M
+    (22) M -> . EMPTY
+    (23) MX -> . MODULE MID SKP A MY
+    (80) EMPTY -> .
+
+    MODULE          shift and go to state 9
+    $end            reduce using rule 80 (EMPTY -> .)
+
+    M                              shift and go to state 6
+    MX                             shift and go to state 7
+    EMPTY                          shift and go to state 8
+
+state 5
+
+    (2) VA -> VAR SKP . VX V_END
+    (3) VX -> . VX VY
+    (4) VX -> . VY
+    (5) VY -> . VFD
+    (6) VY -> . VFU
+    (7) VY -> . VID
+    (8) VY -> . VIU
+    (9) VY -> . EMPTY
+    (10) VFD -> . FLOAT VAX VASS NUM DOT NUM SKP
+    (11) VFU -> . FLOAT VAX SKP
+    (12) VID -> . INT VAX VASS NUM SKP
+    (13) VIU -> . INT VAX SKP
+    (80) EMPTY -> .
+
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
+    V_END           reduce using rule 80 (EMPTY -> .)
+
+  ! FLOAT           [ reduce using rule 80 (EMPTY -> .) ]
+  ! INT             [ reduce using rule 80 (EMPTY -> .) ]
+
+    VX                             shift and go to state 10
+    VY                             shift and go to state 11
+    VFD                            shift and go to state 12
+    VFU                            shift and go to state 13
+    VID                            shift and go to state 14
+    VIU                            shift and go to state 15
+    EMPTY                          shift and go to state 16
+
+state 6
+
+    (1) S -> VA SKP M .
+
+    $end            reduce using rule 1 (S -> VA SKP M .)
+
+
+state 7
+
+    (21) M -> MX . SKP M
+
+    SKP             shift and go to state 19
+
+
+state 8
+
+    (22) M -> EMPTY .
+
+    $end            reduce using rule 22 (M -> EMPTY .)
+
+
+state 9
+
+    (23) MX -> MODULE . MID SKP A MY
+    (24) MID -> . ID
+
+    ID              shift and go to state 21
+
+    MID                            shift and go to state 20
+
+state 10
+
+    (2) VA -> VAR SKP VX . V_END
+    (3) VX -> VX . VY
+    (5) VY -> . VFD
+    (6) VY -> . VFU
+    (7) VY -> . VID
+    (8) VY -> . VIU
+    (9) VY -> . EMPTY
+    (10) VFD -> . FLOAT VAX VASS NUM DOT NUM SKP
+    (11) VFU -> . FLOAT VAX SKP
+    (12) VID -> . INT VAX VASS NUM SKP
+    (13) VIU -> . INT VAX SKP
+    (80) EMPTY -> .
+
+  ! shift/reduce conflict for V_END resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+    V_END           shift and go to state 22
+    FLOAT           shift and go to state 17
+    INT             shift and go to state 18
+
+  ! V_END           [ reduce using rule 80 (EMPTY -> .) ]
+  ! FLOAT           [ reduce using rule 80 (EMPTY -> .) ]
+  ! INT             [ reduce using rule 80 (EMPTY -> .) ]
+
+    VY                             shift and go to state 23
+    VFD                            shift and go to state 12
+    VFU                            shift and go to state 13
+    VID                            shift and go to state 14
+    VIU                            shift and go to state 15
+    EMPTY                          shift and go to state 16
+
+state 11
+
+    (4) VX -> VY .
+
+    V_END           reduce using rule 4 (VX -> VY .)
+    FLOAT           reduce using rule 4 (VX -> VY .)
+    INT             reduce using rule 4 (VX -> VY .)
+
+
+state 12
+
+    (5) VY -> VFD .
+
+    V_END           reduce using rule 5 (VY -> VFD .)
+    FLOAT           reduce using rule 5 (VY -> VFD .)
+    INT             reduce using rule 5 (VY -> VFD .)
+
+
+state 13
+
+    (6) VY -> VFU .
+
+    V_END           reduce using rule 6 (VY -> VFU .)
+    FLOAT           reduce using rule 6 (VY -> VFU .)
+    INT             reduce using rule 6 (VY -> VFU .)
+
+
+state 14
+
+    (7) VY -> VID .
+
+    V_END           reduce using rule 7 (VY -> VID .)
+    FLOAT           reduce using rule 7 (VY -> VID .)
+    INT             reduce using rule 7 (VY -> VID .)
+
+
+state 15
+
+    (8) VY -> VIU .
+
+    V_END           reduce using rule 8 (VY -> VIU .)
+    FLOAT           reduce using rule 8 (VY -> VIU .)
+    INT             reduce using rule 8 (VY -> VIU .)
+
+
+state 16
+
+    (9) VY -> EMPTY .
+
+    V_END           reduce using rule 9 (VY -> EMPTY .)
+    FLOAT           reduce using rule 9 (VY -> EMPTY .)
+    INT             reduce using rule 9 (VY -> EMPTY .)
+
+
+state 17
+
+    (10) VFD -> FLOAT . VAX VASS NUM DOT NUM SKP
+    (11) VFU -> FLOAT . VAX SKP
+    (14) VAX -> . VAX COMMA VAA
+    (15) VAX -> . VAA
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    ID              shift and go to state 26
+
+    VAX                            shift and go to state 24
+    VAA                            shift and go to state 25
+
+state 18
+
+    (12) VID -> INT . VAX VASS NUM SKP
+    (13) VIU -> INT . VAX SKP
+    (14) VAX -> . VAX COMMA VAA
+    (15) VAX -> . VAA
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    ID              shift and go to state 26
+
+    VAX                            shift and go to state 27
+    VAA                            shift and go to state 25
+
+state 19
+
+    (21) M -> MX SKP . M
+    (21) M -> . MX SKP M
+    (22) M -> . EMPTY
+    (23) MX -> . MODULE MID SKP A MY
+    (80) EMPTY -> .
+
+    MODULE          shift and go to state 9
+    $end            reduce using rule 80 (EMPTY -> .)
+
+    MX                             shift and go to state 7
+    M                              shift and go to state 28
+    EMPTY                          shift and go to state 8
+
+state 20
+
+    (23) MX -> MODULE MID . SKP A MY
+
+    SKP             shift and go to state 29
+
+
+state 21
+
+    (24) MID -> ID .
+
+    SKP             reduce using rule 24 (MID -> ID .)
+
+
+state 22
+
+    (2) VA -> VAR SKP VX V_END .
+
+    SKP             reduce using rule 2 (VA -> VAR SKP VX V_END .)
+
+
+state 23
+
+    (3) VX -> VX VY .
+
+    V_END           reduce using rule 3 (VX -> VX VY .)
+    FLOAT           reduce using rule 3 (VX -> VX VY .)
+    INT             reduce using rule 3 (VX -> VX VY .)
+
+
+state 24
+
+    (10) VFD -> FLOAT VAX . VASS NUM DOT NUM SKP
+    (11) VFU -> FLOAT VAX . SKP
+    (14) VAX -> VAX . COMMA VAA
+
+    VASS            shift and go to state 30
+    SKP             shift and go to state 31
+    COMMA           shift and go to state 32
+
+
+state 25
+
+    (15) VAX -> VAA .
+
+    VASS            reduce using rule 15 (VAX -> VAA .)
+    SKP             reduce using rule 15 (VAX -> VAA .)
+    COMMA           reduce using rule 15 (VAX -> VAA .)
+
+
+state 26
+
+    (16) VAA -> ID .
+    (17) VAA -> ID . DIM
+    (18) DIM -> . DIM DIMY
+    (19) DIM -> . DIMY
+    (20) DIMY -> . LBRACK NID RBRACK
+
+    VASS            reduce using rule 16 (VAA -> ID .)
+    SKP             reduce using rule 16 (VAA -> ID .)
+    COMMA           reduce using rule 16 (VAA -> ID .)
+    RBRACK          reduce using rule 16 (VAA -> ID .)
+    GT              reduce using rule 16 (VAA -> ID .)
+    GTE             reduce using rule 16 (VAA -> ID .)
+    LT              reduce using rule 16 (VAA -> ID .)
+    LTE             reduce using rule 16 (VAA -> ID .)
+    EQ              reduce using rule 16 (VAA -> ID .)
+    NEQ             reduce using rule 16 (VAA -> ID .)
+    AND             reduce using rule 16 (VAA -> ID .)
+    OR              reduce using rule 16 (VAA -> ID .)
+    PYC             reduce using rule 16 (VAA -> ID .)
+    RPAREN          reduce using rule 16 (VAA -> ID .)
+    TIMES           reduce using rule 16 (VAA -> ID .)
+    DIVIDE          reduce using rule 16 (VAA -> ID .)
+    PLUS            reduce using rule 16 (VAA -> ID .)
+    MINUS           reduce using rule 16 (VAA -> ID .)
+    LBRACK          shift and go to state 35
+
+    DIM                            shift and go to state 33
+    DIMY                           shift and go to state 34
+
+state 27
+
+    (12) VID -> INT VAX . VASS NUM SKP
+    (13) VIU -> INT VAX . SKP
+    (14) VAX -> VAX . COMMA VAA
+
+    VASS            shift and go to state 36
+    SKP             shift and go to state 37
+    COMMA           shift and go to state 32
+
+
+state 28
+
+    (21) M -> MX SKP M .
+
+    $end            reduce using rule 21 (M -> MX SKP M .)
+
+
+state 29
+
+    (23) MX -> MODULE MID SKP . A MY
+    (26) A -> . A AX SKP
+    (27) A -> . EMPTY
+    (80) EMPTY -> .
+
+    M_END           reduce using rule 80 (EMPTY -> .)
+    READ            reduce using rule 80 (EMPTY -> .)
+    PRINT           reduce using rule 80 (EMPTY -> .)
+    CON             reduce using rule 80 (EMPTY -> .)
+    LOOP            reduce using rule 80 (EMPTY -> .)
+    FOR             reduce using rule 80 (EMPTY -> .)
+    USE             reduce using rule 80 (EMPTY -> .)
+    ID              reduce using rule 80 (EMPTY -> .)
+    SKP             reduce using rule 80 (EMPTY -> .)
+
+    A                              shift and go to state 38
+    EMPTY                          shift and go to state 39
+
+state 30
+
+    (10) VFD -> FLOAT VAX VASS . NUM DOT NUM SKP
+
+    NUM             shift and go to state 40
+
+
+state 31
+
+    (11) VFU -> FLOAT VAX SKP .
+
+    V_END           reduce using rule 11 (VFU -> FLOAT VAX SKP .)
+    FLOAT           reduce using rule 11 (VFU -> FLOAT VAX SKP .)
+    INT             reduce using rule 11 (VFU -> FLOAT VAX SKP .)
+
+
+state 32
+
+    (14) VAX -> VAX COMMA . VAA
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    ID              shift and go to state 26
+
+    VAA                            shift and go to state 41
+
+state 33
+
+    (17) VAA -> ID DIM .
+    (18) DIM -> DIM . DIMY
+    (20) DIMY -> . LBRACK NID RBRACK
+
+    VASS            reduce using rule 17 (VAA -> ID DIM .)
+    SKP             reduce using rule 17 (VAA -> ID DIM .)
+    COMMA           reduce using rule 17 (VAA -> ID DIM .)
+    RBRACK          reduce using rule 17 (VAA -> ID DIM .)
+    GT              reduce using rule 17 (VAA -> ID DIM .)
+    GTE             reduce using rule 17 (VAA -> ID DIM .)
+    LT              reduce using rule 17 (VAA -> ID DIM .)
+    LTE             reduce using rule 17 (VAA -> ID DIM .)
+    EQ              reduce using rule 17 (VAA -> ID DIM .)
+    NEQ             reduce using rule 17 (VAA -> ID DIM .)
+    AND             reduce using rule 17 (VAA -> ID DIM .)
+    OR              reduce using rule 17 (VAA -> ID DIM .)
+    PYC             reduce using rule 17 (VAA -> ID DIM .)
+    RPAREN          reduce using rule 17 (VAA -> ID DIM .)
+    TIMES           reduce using rule 17 (VAA -> ID DIM .)
+    DIVIDE          reduce using rule 17 (VAA -> ID DIM .)
+    PLUS            reduce using rule 17 (VAA -> ID DIM .)
+    MINUS           reduce using rule 17 (VAA -> ID DIM .)
+    LBRACK          shift and go to state 35
+
+    DIMY                           shift and go to state 42
+
+state 34
+
+    (19) DIM -> DIMY .
+
+    LBRACK          reduce using rule 19 (DIM -> DIMY .)
+    VASS            reduce using rule 19 (DIM -> DIMY .)
+    SKP             reduce using rule 19 (DIM -> DIMY .)
+    COMMA           reduce using rule 19 (DIM -> DIMY .)
+    RBRACK          reduce using rule 19 (DIM -> DIMY .)
+    GT              reduce using rule 19 (DIM -> DIMY .)
+    GTE             reduce using rule 19 (DIM -> DIMY .)
+    LT              reduce using rule 19 (DIM -> DIMY .)
+    LTE             reduce using rule 19 (DIM -> DIMY .)
+    EQ              reduce using rule 19 (DIM -> DIMY .)
+    NEQ             reduce using rule 19 (DIM -> DIMY .)
+    AND             reduce using rule 19 (DIM -> DIMY .)
+    OR              reduce using rule 19 (DIM -> DIMY .)
+    PYC             reduce using rule 19 (DIM -> DIMY .)
+    RPAREN          reduce using rule 19 (DIM -> DIMY .)
+    TIMES           reduce using rule 19 (DIM -> DIMY .)
+    DIVIDE          reduce using rule 19 (DIM -> DIMY .)
+    PLUS            reduce using rule 19 (DIM -> DIMY .)
+    MINUS           reduce using rule 19 (DIM -> DIMY .)
+
+
+state 35
+
+    (20) DIMY -> LBRACK . NID RBRACK
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    NID                            shift and go to state 43
+    VAA                            shift and go to state 44
+
+state 36
+
+    (12) VID -> INT VAX VASS . NUM SKP
+
+    NUM             shift and go to state 46
+
+
+state 37
+
+    (13) VIU -> INT VAX SKP .
+
+    V_END           reduce using rule 13 (VIU -> INT VAX SKP .)
+    FLOAT           reduce using rule 13 (VIU -> INT VAX SKP .)
+    INT             reduce using rule 13 (VIU -> INT VAX SKP .)
+
+
+state 38
+
+    (23) MX -> MODULE MID SKP A . MY
+    (26) A -> A . AX SKP
+    (25) MY -> . M_END
+    (28) AX -> . RD
+    (29) AX -> . PR
+    (30) AX -> . CD
+    (31) AX -> . LP
+    (32) AX -> . FR
+    (33) AX -> . AR
+    (34) AX -> . US
+    (35) AX -> . EMPTY
+    (40) RD -> . READ LPAREN VAA RPAREN
+    (36) PR -> . PRINT LPAREN PX RPAREN
+    (42) CD -> . CON EL CDX SKP A CDE CDZ
+    (48) LP -> . LOOP EL LPX SKP A LPY
+    (51) FR -> . FOR FRX SKP A FRY
+    (54) AR -> . VAA VASS EA
+    (41) US -> . USE ID
+    (80) EMPTY -> .
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    M_END           shift and go to state 49
+    READ            shift and go to state 58
+    PRINT           shift and go to state 60
+    CON             shift and go to state 61
+    LOOP            shift and go to state 62
+    FOR             shift and go to state 63
+    USE             shift and go to state 64
+    SKP             reduce using rule 80 (EMPTY -> .)
+    ID              shift and go to state 26
+
+    MY                             shift and go to state 47
+    AX                             shift and go to state 48
+    RD                             shift and go to state 50
+    PR                             shift and go to state 51
+    CD                             shift and go to state 52
+    LP                             shift and go to state 53
+    FR                             shift and go to state 54
+    AR                             shift and go to state 55
+    US                             shift and go to state 56
+    EMPTY                          shift and go to state 57
+    VAA                            shift and go to state 59
+
+state 39
+
+    (27) A -> EMPTY .
+
+    M_END           reduce using rule 27 (A -> EMPTY .)
+    READ            reduce using rule 27 (A -> EMPTY .)
+    PRINT           reduce using rule 27 (A -> EMPTY .)
+    CON             reduce using rule 27 (A -> EMPTY .)
+    LOOP            reduce using rule 27 (A -> EMPTY .)
+    FOR             reduce using rule 27 (A -> EMPTY .)
+    USE             reduce using rule 27 (A -> EMPTY .)
+    ID              reduce using rule 27 (A -> EMPTY .)
+    SKP             reduce using rule 27 (A -> EMPTY .)
+    F_END           reduce using rule 27 (A -> EMPTY .)
+    ELSE            reduce using rule 27 (A -> EMPTY .)
+    C_END           reduce using rule 27 (A -> EMPTY .)
+    L_END           reduce using rule 27 (A -> EMPTY .)
+
+
+state 40
+
+    (10) VFD -> FLOAT VAX VASS NUM . DOT NUM SKP
+
+    DOT             shift and go to state 65
+
+
+state 41
+
+    (14) VAX -> VAX COMMA VAA .
+
+    VASS            reduce using rule 14 (VAX -> VAX COMMA VAA .)
+    SKP             reduce using rule 14 (VAX -> VAX COMMA VAA .)
+    COMMA           reduce using rule 14 (VAX -> VAX COMMA VAA .)
+
+
+state 42
+
+    (18) DIM -> DIM DIMY .
+
+    LBRACK          reduce using rule 18 (DIM -> DIM DIMY .)
+    VASS            reduce using rule 18 (DIM -> DIM DIMY .)
+    SKP             reduce using rule 18 (DIM -> DIM DIMY .)
+    COMMA           reduce using rule 18 (DIM -> DIM DIMY .)
+    RBRACK          reduce using rule 18 (DIM -> DIM DIMY .)
+    GT              reduce using rule 18 (DIM -> DIM DIMY .)
+    GTE             reduce using rule 18 (DIM -> DIM DIMY .)
+    LT              reduce using rule 18 (DIM -> DIM DIMY .)
+    LTE             reduce using rule 18 (DIM -> DIM DIMY .)
+    EQ              reduce using rule 18 (DIM -> DIM DIMY .)
+    NEQ             reduce using rule 18 (DIM -> DIM DIMY .)
+    AND             reduce using rule 18 (DIM -> DIM DIMY .)
+    OR              reduce using rule 18 (DIM -> DIM DIMY .)
+    PYC             reduce using rule 18 (DIM -> DIM DIMY .)
+    RPAREN          reduce using rule 18 (DIM -> DIM DIMY .)
+    TIMES           reduce using rule 18 (DIM -> DIM DIMY .)
+    DIVIDE          reduce using rule 18 (DIM -> DIM DIMY .)
+    PLUS            reduce using rule 18 (DIM -> DIM DIMY .)
+    MINUS           reduce using rule 18 (DIM -> DIM DIMY .)
+
+
+state 43
+
+    (20) DIMY -> LBRACK NID . RBRACK
+
+    RBRACK          shift and go to state 66
+
+
+state 44
+
+    (77) NID -> VAA .
+
+    RBRACK          reduce using rule 77 (NID -> VAA .)
+    GT              reduce using rule 77 (NID -> VAA .)
+    GTE             reduce using rule 77 (NID -> VAA .)
+    LT              reduce using rule 77 (NID -> VAA .)
+    LTE             reduce using rule 77 (NID -> VAA .)
+    EQ              reduce using rule 77 (NID -> VAA .)
+    NEQ             reduce using rule 77 (NID -> VAA .)
+    AND             reduce using rule 77 (NID -> VAA .)
+    OR              reduce using rule 77 (NID -> VAA .)
+    PYC             reduce using rule 77 (NID -> VAA .)
+    TIMES           reduce using rule 77 (NID -> VAA .)
+    DIVIDE          reduce using rule 77 (NID -> VAA .)
+    PLUS            reduce using rule 77 (NID -> VAA .)
+    MINUS           reduce using rule 77 (NID -> VAA .)
+    SKP             reduce using rule 77 (NID -> VAA .)
+    RPAREN          reduce using rule 77 (NID -> VAA .)
+    COMMA           reduce using rule 77 (NID -> VAA .)
+
+
+state 45
+
+    (78) NID -> NUM .
+    (79) NID -> NUM . DOT NUM
+
+    RBRACK          reduce using rule 78 (NID -> NUM .)
+    GT              reduce using rule 78 (NID -> NUM .)
+    GTE             reduce using rule 78 (NID -> NUM .)
+    LT              reduce using rule 78 (NID -> NUM .)
+    LTE             reduce using rule 78 (NID -> NUM .)
+    EQ              reduce using rule 78 (NID -> NUM .)
+    NEQ             reduce using rule 78 (NID -> NUM .)
+    AND             reduce using rule 78 (NID -> NUM .)
+    OR              reduce using rule 78 (NID -> NUM .)
+    PYC             reduce using rule 78 (NID -> NUM .)
+    TIMES           reduce using rule 78 (NID -> NUM .)
+    DIVIDE          reduce using rule 78 (NID -> NUM .)
+    PLUS            reduce using rule 78 (NID -> NUM .)
+    MINUS           reduce using rule 78 (NID -> NUM .)
+    SKP             reduce using rule 78 (NID -> NUM .)
+    RPAREN          reduce using rule 78 (NID -> NUM .)
+    COMMA           reduce using rule 78 (NID -> NUM .)
+    DOT             shift and go to state 67
+
+
+state 46
+
+    (12) VID -> INT VAX VASS NUM . SKP
+
+    SKP             shift and go to state 68
+
+
+state 47
+
+    (23) MX -> MODULE MID SKP A MY .
+
+    SKP             reduce using rule 23 (MX -> MODULE MID SKP A MY .)
+
+
+state 48
+
+    (26) A -> A AX . SKP
+
+    SKP             shift and go to state 69
+
+
+state 49
+
+    (25) MY -> M_END .
+
+    SKP             reduce using rule 25 (MY -> M_END .)
+
+
+state 50
+
+    (28) AX -> RD .
+
+    SKP             reduce using rule 28 (AX -> RD .)
+
+
+state 51
+
+    (29) AX -> PR .
+
+    SKP             reduce using rule 29 (AX -> PR .)
+
+
+state 52
+
+    (30) AX -> CD .
+
+    SKP             reduce using rule 30 (AX -> CD .)
+
+
+state 53
+
+    (31) AX -> LP .
+
+    SKP             reduce using rule 31 (AX -> LP .)
+
+
+state 54
+
+    (32) AX -> FR .
+
+    SKP             reduce using rule 32 (AX -> FR .)
+
+
+state 55
+
+    (33) AX -> AR .
+
+    SKP             reduce using rule 33 (AX -> AR .)
+
+
+state 56
+
+    (34) AX -> US .
+
+    SKP             reduce using rule 34 (AX -> US .)
+
+
+state 57
+
+    (35) AX -> EMPTY .
+
+    SKP             reduce using rule 35 (AX -> EMPTY .)
+
+
+state 58
+
+    (40) RD -> READ . LPAREN VAA RPAREN
+
+    LPAREN          shift and go to state 70
+
+
+state 59
+
+    (54) AR -> VAA . VASS EA
+
+    VASS            shift and go to state 71
+
+
+state 60
+
+    (36) PR -> PRINT . LPAREN PX RPAREN
+
+    LPAREN          shift and go to state 72
+
+
+state 61
+
+    (42) CD -> CON . EL CDX SKP A CDE CDZ
+    (63) EL -> . EL OR TL
+    (64) EL -> . TL
+    (65) TL -> . TL AND FL
+    (66) TL -> . FL
+    (67) FL -> . FL SL PL
+    (68) FL -> . PL
+    (69) PL -> . NID
+    (70) PL -> . LPAREN EL RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 78
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    EL                             shift and go to state 73
+    TL                             shift and go to state 74
+    FL                             shift and go to state 75
+    PL                             shift and go to state 76
+    NID                            shift and go to state 77
+    VAA                            shift and go to state 44
+
+state 62
+
+    (48) LP -> LOOP . EL LPX SKP A LPY
+    (63) EL -> . EL OR TL
+    (64) EL -> . TL
+    (65) TL -> . TL AND FL
+    (66) TL -> . FL
+    (67) FL -> . FL SL PL
+    (68) FL -> . PL
+    (69) PL -> . NID
+    (70) PL -> . LPAREN EL RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 78
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    EL                             shift and go to state 79
+    TL                             shift and go to state 74
+    FL                             shift and go to state 75
+    PL                             shift and go to state 76
+    NID                            shift and go to state 77
+    VAA                            shift and go to state 44
+
+state 63
+
+    (51) FR -> FOR . FRX SKP A FRY
+    (52) FRX -> . ID VASS NID SL NID COMMA NID PYC
+
+    ID              shift and go to state 81
+
+    FRX                            shift and go to state 80
+
+state 64
+
+    (41) US -> USE . ID
+
+    ID              shift and go to state 82
+
+
+state 65
+
+    (10) VFD -> FLOAT VAX VASS NUM DOT . NUM SKP
+
+    NUM             shift and go to state 83
+
+
+state 66
+
+    (20) DIMY -> LBRACK NID RBRACK .
+
+    LBRACK          reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    VASS            reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    SKP             reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    COMMA           reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    RBRACK          reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    GT              reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    GTE             reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    LT              reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    LTE             reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    EQ              reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    NEQ             reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    AND             reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    OR              reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    PYC             reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    RPAREN          reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    TIMES           reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    DIVIDE          reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    PLUS            reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+    MINUS           reduce using rule 20 (DIMY -> LBRACK NID RBRACK .)
+
+
+state 67
+
+    (79) NID -> NUM DOT . NUM
+
+    NUM             shift and go to state 84
+
+
+state 68
+
+    (12) VID -> INT VAX VASS NUM SKP .
+
+    V_END           reduce using rule 12 (VID -> INT VAX VASS NUM SKP .)
+    FLOAT           reduce using rule 12 (VID -> INT VAX VASS NUM SKP .)
+    INT             reduce using rule 12 (VID -> INT VAX VASS NUM SKP .)
+
+
+state 69
+
+    (26) A -> A AX SKP .
+
+    M_END           reduce using rule 26 (A -> A AX SKP .)
+    READ            reduce using rule 26 (A -> A AX SKP .)
+    PRINT           reduce using rule 26 (A -> A AX SKP .)
+    CON             reduce using rule 26 (A -> A AX SKP .)
+    LOOP            reduce using rule 26 (A -> A AX SKP .)
+    FOR             reduce using rule 26 (A -> A AX SKP .)
+    USE             reduce using rule 26 (A -> A AX SKP .)
+    ID              reduce using rule 26 (A -> A AX SKP .)
+    SKP             reduce using rule 26 (A -> A AX SKP .)
+    F_END           reduce using rule 26 (A -> A AX SKP .)
+    ELSE            reduce using rule 26 (A -> A AX SKP .)
+    C_END           reduce using rule 26 (A -> A AX SKP .)
+    L_END           reduce using rule 26 (A -> A AX SKP .)
+
+
+state 70
+
+    (40) RD -> READ LPAREN . VAA RPAREN
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    ID              shift and go to state 26
+
+    VAA                            shift and go to state 85
+
+state 71
+
+    (54) AR -> VAA VASS . EA
+    (55) EA -> . EA PLUS TA
+    (56) EA -> . EA MINUS TA
+    (57) EA -> . TA
+    (58) TA -> . TA TIMES FA
+    (59) TA -> . TA DIVIDE FA
+    (60) TA -> . FA
+    (61) FA -> . NID
+    (62) FA -> . LPAREN EA RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 90
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    VAA                            shift and go to state 44
+    EA                             shift and go to state 86
+    TA                             shift and go to state 87
+    FA                             shift and go to state 88
+    NID                            shift and go to state 89
+
+state 72
+
+    (36) PR -> PRINT LPAREN . PX RPAREN
+    (37) PX -> . PX PLUS PX
+    (38) PX -> . STR
+    (39) PX -> . VAA
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    STR             shift and go to state 92
+    ID              shift and go to state 26
+
+    PX                             shift and go to state 91
+    VAA                            shift and go to state 93
+
+state 73
+
+    (42) CD -> CON EL . CDX SKP A CDE CDZ
+    (63) EL -> EL . OR TL
+    (45) CDX -> . PYC
+
+    OR              shift and go to state 95
+    PYC             shift and go to state 96
+
+    CDX                            shift and go to state 94
+
+state 74
+
+    (64) EL -> TL .
+    (65) TL -> TL . AND FL
+
+    OR              reduce using rule 64 (EL -> TL .)
+    PYC             reduce using rule 64 (EL -> TL .)
+    RPAREN          reduce using rule 64 (EL -> TL .)
+    AND             shift and go to state 97
+
+
+state 75
+
+    (66) TL -> FL .
+    (67) FL -> FL . SL PL
+    (71) SL -> . GT
+    (72) SL -> . GTE
+    (73) SL -> . LT
+    (74) SL -> . LTE
+    (75) SL -> . EQ
+    (76) SL -> . NEQ
+
+    AND             reduce using rule 66 (TL -> FL .)
+    OR              reduce using rule 66 (TL -> FL .)
+    PYC             reduce using rule 66 (TL -> FL .)
+    RPAREN          reduce using rule 66 (TL -> FL .)
+    GT              shift and go to state 99
+    GTE             shift and go to state 100
+    LT              shift and go to state 101
+    LTE             shift and go to state 102
+    EQ              shift and go to state 103
+    NEQ             shift and go to state 104
+
+    SL                             shift and go to state 98
+
+state 76
+
+    (68) FL -> PL .
+
+    GT              reduce using rule 68 (FL -> PL .)
+    GTE             reduce using rule 68 (FL -> PL .)
+    LT              reduce using rule 68 (FL -> PL .)
+    LTE             reduce using rule 68 (FL -> PL .)
+    EQ              reduce using rule 68 (FL -> PL .)
+    NEQ             reduce using rule 68 (FL -> PL .)
+    AND             reduce using rule 68 (FL -> PL .)
+    OR              reduce using rule 68 (FL -> PL .)
+    PYC             reduce using rule 68 (FL -> PL .)
+    RPAREN          reduce using rule 68 (FL -> PL .)
+
+
+state 77
+
+    (69) PL -> NID .
+
+    GT              reduce using rule 69 (PL -> NID .)
+    GTE             reduce using rule 69 (PL -> NID .)
+    LT              reduce using rule 69 (PL -> NID .)
+    LTE             reduce using rule 69 (PL -> NID .)
+    EQ              reduce using rule 69 (PL -> NID .)
+    NEQ             reduce using rule 69 (PL -> NID .)
+    AND             reduce using rule 69 (PL -> NID .)
+    OR              reduce using rule 69 (PL -> NID .)
+    PYC             reduce using rule 69 (PL -> NID .)
+    RPAREN          reduce using rule 69 (PL -> NID .)
+
+
+state 78
+
+    (70) PL -> LPAREN . EL RPAREN
+    (63) EL -> . EL OR TL
+    (64) EL -> . TL
+    (65) TL -> . TL AND FL
+    (66) TL -> . FL
+    (67) FL -> . FL SL PL
+    (68) FL -> . PL
+    (69) PL -> . NID
+    (70) PL -> . LPAREN EL RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 78
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    EL                             shift and go to state 105
+    TL                             shift and go to state 74
+    FL                             shift and go to state 75
+    PL                             shift and go to state 76
+    NID                            shift and go to state 77
+    VAA                            shift and go to state 44
+
+state 79
+
+    (48) LP -> LOOP EL . LPX SKP A LPY
+    (63) EL -> EL . OR TL
+    (49) LPX -> . PYC
+
+    OR              shift and go to state 95
+    PYC             shift and go to state 107
+
+    LPX                            shift and go to state 106
+
+state 80
+
+    (51) FR -> FOR FRX . SKP A FRY
+
+    SKP             shift and go to state 108
+
+
+state 81
+
+    (52) FRX -> ID . VASS NID SL NID COMMA NID PYC
+
+    VASS            shift and go to state 109
+
+
+state 82
+
+    (41) US -> USE ID .
+
+    SKP             reduce using rule 41 (US -> USE ID .)
+
+
+state 83
+
+    (10) VFD -> FLOAT VAX VASS NUM DOT NUM . SKP
+
+    SKP             shift and go to state 110
+
+
+state 84
+
+    (79) NID -> NUM DOT NUM .
+
+    RBRACK          reduce using rule 79 (NID -> NUM DOT NUM .)
+    GT              reduce using rule 79 (NID -> NUM DOT NUM .)
+    GTE             reduce using rule 79 (NID -> NUM DOT NUM .)
+    LT              reduce using rule 79 (NID -> NUM DOT NUM .)
+    LTE             reduce using rule 79 (NID -> NUM DOT NUM .)
+    EQ              reduce using rule 79 (NID -> NUM DOT NUM .)
+    NEQ             reduce using rule 79 (NID -> NUM DOT NUM .)
+    AND             reduce using rule 79 (NID -> NUM DOT NUM .)
+    OR              reduce using rule 79 (NID -> NUM DOT NUM .)
+    PYC             reduce using rule 79 (NID -> NUM DOT NUM .)
+    TIMES           reduce using rule 79 (NID -> NUM DOT NUM .)
+    DIVIDE          reduce using rule 79 (NID -> NUM DOT NUM .)
+    PLUS            reduce using rule 79 (NID -> NUM DOT NUM .)
+    MINUS           reduce using rule 79 (NID -> NUM DOT NUM .)
+    SKP             reduce using rule 79 (NID -> NUM DOT NUM .)
+    RPAREN          reduce using rule 79 (NID -> NUM DOT NUM .)
+    COMMA           reduce using rule 79 (NID -> NUM DOT NUM .)
+
+
+state 85
+
+    (40) RD -> READ LPAREN VAA . RPAREN
+
+    RPAREN          shift and go to state 111
+
+
+state 86
+
+    (54) AR -> VAA VASS EA .
+    (55) EA -> EA . PLUS TA
+    (56) EA -> EA . MINUS TA
+
+    SKP             reduce using rule 54 (AR -> VAA VASS EA .)
+    PLUS            shift and go to state 112
+    MINUS           shift and go to state 113
+
+
+state 87
+
+    (57) EA -> TA .
+    (58) TA -> TA . TIMES FA
+    (59) TA -> TA . DIVIDE FA
+
+    PLUS            reduce using rule 57 (EA -> TA .)
+    MINUS           reduce using rule 57 (EA -> TA .)
+    SKP             reduce using rule 57 (EA -> TA .)
+    RPAREN          reduce using rule 57 (EA -> TA .)
+    TIMES           shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 88
+
+    (60) TA -> FA .
+
+    TIMES           reduce using rule 60 (TA -> FA .)
+    DIVIDE          reduce using rule 60 (TA -> FA .)
+    PLUS            reduce using rule 60 (TA -> FA .)
+    MINUS           reduce using rule 60 (TA -> FA .)
+    SKP             reduce using rule 60 (TA -> FA .)
+    RPAREN          reduce using rule 60 (TA -> FA .)
+
+
+state 89
+
+    (61) FA -> NID .
+
+    TIMES           reduce using rule 61 (FA -> NID .)
+    DIVIDE          reduce using rule 61 (FA -> NID .)
+    PLUS            reduce using rule 61 (FA -> NID .)
+    MINUS           reduce using rule 61 (FA -> NID .)
+    SKP             reduce using rule 61 (FA -> NID .)
+    RPAREN          reduce using rule 61 (FA -> NID .)
+
+
+state 90
+
+    (62) FA -> LPAREN . EA RPAREN
+    (55) EA -> . EA PLUS TA
+    (56) EA -> . EA MINUS TA
+    (57) EA -> . TA
+    (58) TA -> . TA TIMES FA
+    (59) TA -> . TA DIVIDE FA
+    (60) TA -> . FA
+    (61) FA -> . NID
+    (62) FA -> . LPAREN EA RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 90
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    EA                             shift and go to state 116
+    TA                             shift and go to state 87
+    FA                             shift and go to state 88
+    NID                            shift and go to state 89
+    VAA                            shift and go to state 44
+
+state 91
+
+    (36) PR -> PRINT LPAREN PX . RPAREN
+    (37) PX -> PX . PLUS PX
+
+    RPAREN          shift and go to state 117
+    PLUS            shift and go to state 118
+
+
+state 92
+
+    (38) PX -> STR .
+
+    RPAREN          reduce using rule 38 (PX -> STR .)
+    PLUS            reduce using rule 38 (PX -> STR .)
+
+
+state 93
+
+    (39) PX -> VAA .
+
+    RPAREN          reduce using rule 39 (PX -> VAA .)
+    PLUS            reduce using rule 39 (PX -> VAA .)
+
+
+state 94
+
+    (42) CD -> CON EL CDX . SKP A CDE CDZ
+
+    SKP             shift and go to state 119
+
+
+state 95
+
+    (63) EL -> EL OR . TL
+    (65) TL -> . TL AND FL
+    (66) TL -> . FL
+    (67) FL -> . FL SL PL
+    (68) FL -> . PL
+    (69) PL -> . NID
+    (70) PL -> . LPAREN EL RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 78
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    TL                             shift and go to state 120
+    FL                             shift and go to state 75
+    PL                             shift and go to state 76
+    NID                            shift and go to state 77
+    VAA                            shift and go to state 44
+
+state 96
+
+    (45) CDX -> PYC .
+
+    SKP             reduce using rule 45 (CDX -> PYC .)
+
+
+state 97
+
+    (65) TL -> TL AND . FL
+    (67) FL -> . FL SL PL
+    (68) FL -> . PL
+    (69) PL -> . NID
+    (70) PL -> . LPAREN EL RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 78
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    FL                             shift and go to state 121
+    PL                             shift and go to state 76
+    NID                            shift and go to state 77
+    VAA                            shift and go to state 44
+
+state 98
+
+    (67) FL -> FL SL . PL
+    (69) PL -> . NID
+    (70) PL -> . LPAREN EL RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 78
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    PL                             shift and go to state 122
+    NID                            shift and go to state 77
+    VAA                            shift and go to state 44
+
+state 99
+
+    (71) SL -> GT .
+
+    LPAREN          reduce using rule 71 (SL -> GT .)
+    NUM             reduce using rule 71 (SL -> GT .)
+    ID              reduce using rule 71 (SL -> GT .)
+
+
+state 100
+
+    (72) SL -> GTE .
+
+    LPAREN          reduce using rule 72 (SL -> GTE .)
+    NUM             reduce using rule 72 (SL -> GTE .)
+    ID              reduce using rule 72 (SL -> GTE .)
+
+
+state 101
+
+    (73) SL -> LT .
+
+    LPAREN          reduce using rule 73 (SL -> LT .)
+    NUM             reduce using rule 73 (SL -> LT .)
+    ID              reduce using rule 73 (SL -> LT .)
+
+
+state 102
+
+    (74) SL -> LTE .
+
+    LPAREN          reduce using rule 74 (SL -> LTE .)
+    NUM             reduce using rule 74 (SL -> LTE .)
+    ID              reduce using rule 74 (SL -> LTE .)
+
+
+state 103
+
+    (75) SL -> EQ .
+
+    LPAREN          reduce using rule 75 (SL -> EQ .)
+    NUM             reduce using rule 75 (SL -> EQ .)
+    ID              reduce using rule 75 (SL -> EQ .)
+
+
+state 104
+
+    (76) SL -> NEQ .
+
+    LPAREN          reduce using rule 76 (SL -> NEQ .)
+    NUM             reduce using rule 76 (SL -> NEQ .)
+    ID              reduce using rule 76 (SL -> NEQ .)
+
+
+state 105
+
+    (70) PL -> LPAREN EL . RPAREN
+    (63) EL -> EL . OR TL
+
+    RPAREN          shift and go to state 123
+    OR              shift and go to state 95
+
+
+state 106
+
+    (48) LP -> LOOP EL LPX . SKP A LPY
+
+    SKP             shift and go to state 124
+
+
+state 107
+
+    (49) LPX -> PYC .
+
+    SKP             reduce using rule 49 (LPX -> PYC .)
+
+
+state 108
+
+    (51) FR -> FOR FRX SKP . A FRY
+    (26) A -> . A AX SKP
+    (27) A -> . EMPTY
+    (80) EMPTY -> .
+
+    F_END           reduce using rule 80 (EMPTY -> .)
+    READ            reduce using rule 80 (EMPTY -> .)
+    PRINT           reduce using rule 80 (EMPTY -> .)
+    CON             reduce using rule 80 (EMPTY -> .)
+    LOOP            reduce using rule 80 (EMPTY -> .)
+    FOR             reduce using rule 80 (EMPTY -> .)
+    USE             reduce using rule 80 (EMPTY -> .)
+    ID              reduce using rule 80 (EMPTY -> .)
+    SKP             reduce using rule 80 (EMPTY -> .)
+
+    A                              shift and go to state 125
+    EMPTY                          shift and go to state 39
+
+state 109
+
+    (52) FRX -> ID VASS . NID SL NID COMMA NID PYC
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    NID                            shift and go to state 126
+    VAA                            shift and go to state 44
+
+state 110
+
+    (10) VFD -> FLOAT VAX VASS NUM DOT NUM SKP .
+
+    V_END           reduce using rule 10 (VFD -> FLOAT VAX VASS NUM DOT NUM SKP .)
+    FLOAT           reduce using rule 10 (VFD -> FLOAT VAX VASS NUM DOT NUM SKP .)
+    INT             reduce using rule 10 (VFD -> FLOAT VAX VASS NUM DOT NUM SKP .)
+
+
+state 111
+
+    (40) RD -> READ LPAREN VAA RPAREN .
+
+    SKP             reduce using rule 40 (RD -> READ LPAREN VAA RPAREN .)
+
+
+state 112
+
+    (55) EA -> EA PLUS . TA
+    (58) TA -> . TA TIMES FA
+    (59) TA -> . TA DIVIDE FA
+    (60) TA -> . FA
+    (61) FA -> . NID
+    (62) FA -> . LPAREN EA RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 90
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    TA                             shift and go to state 127
+    FA                             shift and go to state 88
+    NID                            shift and go to state 89
+    VAA                            shift and go to state 44
+
+state 113
+
+    (56) EA -> EA MINUS . TA
+    (58) TA -> . TA TIMES FA
+    (59) TA -> . TA DIVIDE FA
+    (60) TA -> . FA
+    (61) FA -> . NID
+    (62) FA -> . LPAREN EA RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 90
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    TA                             shift and go to state 128
+    FA                             shift and go to state 88
+    NID                            shift and go to state 89
+    VAA                            shift and go to state 44
+
+state 114
+
+    (58) TA -> TA TIMES . FA
+    (61) FA -> . NID
+    (62) FA -> . LPAREN EA RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 90
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    FA                             shift and go to state 129
+    NID                            shift and go to state 89
+    VAA                            shift and go to state 44
+
+state 115
+
+    (59) TA -> TA DIVIDE . FA
+    (61) FA -> . NID
+    (62) FA -> . LPAREN EA RPAREN
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    LPAREN          shift and go to state 90
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    FA                             shift and go to state 130
+    NID                            shift and go to state 89
+    VAA                            shift and go to state 44
+
+state 116
+
+    (62) FA -> LPAREN EA . RPAREN
+    (55) EA -> EA . PLUS TA
+    (56) EA -> EA . MINUS TA
+
+    RPAREN          shift and go to state 131
+    PLUS            shift and go to state 112
+    MINUS           shift and go to state 113
+
+
+state 117
+
+    (36) PR -> PRINT LPAREN PX RPAREN .
+
+    SKP             reduce using rule 36 (PR -> PRINT LPAREN PX RPAREN .)
+
+
+state 118
+
+    (37) PX -> PX PLUS . PX
+    (37) PX -> . PX PLUS PX
+    (38) PX -> . STR
+    (39) PX -> . VAA
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    STR             shift and go to state 92
+    ID              shift and go to state 26
+
+    PX                             shift and go to state 132
+    VAA                            shift and go to state 93
+
+state 119
+
+    (42) CD -> CON EL CDX SKP . A CDE CDZ
+    (26) A -> . A AX SKP
+    (27) A -> . EMPTY
+    (80) EMPTY -> .
+
+    ELSE            reduce using rule 80 (EMPTY -> .)
+    READ            reduce using rule 80 (EMPTY -> .)
+    PRINT           reduce using rule 80 (EMPTY -> .)
+    CON             reduce using rule 80 (EMPTY -> .)
+    LOOP            reduce using rule 80 (EMPTY -> .)
+    FOR             reduce using rule 80 (EMPTY -> .)
+    USE             reduce using rule 80 (EMPTY -> .)
+    ID              reduce using rule 80 (EMPTY -> .)
+    C_END           reduce using rule 80 (EMPTY -> .)
+    SKP             reduce using rule 80 (EMPTY -> .)
+
+    A                              shift and go to state 133
+    EMPTY                          shift and go to state 39
+
+state 120
+
+    (63) EL -> EL OR TL .
+    (65) TL -> TL . AND FL
+
+    OR              reduce using rule 63 (EL -> EL OR TL .)
+    PYC             reduce using rule 63 (EL -> EL OR TL .)
+    RPAREN          reduce using rule 63 (EL -> EL OR TL .)
+    AND             shift and go to state 97
+
+
+state 121
+
+    (65) TL -> TL AND FL .
+    (67) FL -> FL . SL PL
+    (71) SL -> . GT
+    (72) SL -> . GTE
+    (73) SL -> . LT
+    (74) SL -> . LTE
+    (75) SL -> . EQ
+    (76) SL -> . NEQ
+
+    AND             reduce using rule 65 (TL -> TL AND FL .)
+    OR              reduce using rule 65 (TL -> TL AND FL .)
+    PYC             reduce using rule 65 (TL -> TL AND FL .)
+    RPAREN          reduce using rule 65 (TL -> TL AND FL .)
+    GT              shift and go to state 99
+    GTE             shift and go to state 100
+    LT              shift and go to state 101
+    LTE             shift and go to state 102
+    EQ              shift and go to state 103
+    NEQ             shift and go to state 104
+
+    SL                             shift and go to state 98
+
+state 122
+
+    (67) FL -> FL SL PL .
+
+    GT              reduce using rule 67 (FL -> FL SL PL .)
+    GTE             reduce using rule 67 (FL -> FL SL PL .)
+    LT              reduce using rule 67 (FL -> FL SL PL .)
+    LTE             reduce using rule 67 (FL -> FL SL PL .)
+    EQ              reduce using rule 67 (FL -> FL SL PL .)
+    NEQ             reduce using rule 67 (FL -> FL SL PL .)
+    AND             reduce using rule 67 (FL -> FL SL PL .)
+    OR              reduce using rule 67 (FL -> FL SL PL .)
+    PYC             reduce using rule 67 (FL -> FL SL PL .)
+    RPAREN          reduce using rule 67 (FL -> FL SL PL .)
+
+
+state 123
+
+    (70) PL -> LPAREN EL RPAREN .
+
+    GT              reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    GTE             reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    LT              reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    LTE             reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    EQ              reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    NEQ             reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    AND             reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    OR              reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    PYC             reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+    RPAREN          reduce using rule 70 (PL -> LPAREN EL RPAREN .)
+
+
+state 124
+
+    (48) LP -> LOOP EL LPX SKP . A LPY
+    (26) A -> . A AX SKP
+    (27) A -> . EMPTY
+    (80) EMPTY -> .
+
+    L_END           reduce using rule 80 (EMPTY -> .)
+    READ            reduce using rule 80 (EMPTY -> .)
+    PRINT           reduce using rule 80 (EMPTY -> .)
+    CON             reduce using rule 80 (EMPTY -> .)
+    LOOP            reduce using rule 80 (EMPTY -> .)
+    FOR             reduce using rule 80 (EMPTY -> .)
+    USE             reduce using rule 80 (EMPTY -> .)
+    ID              reduce using rule 80 (EMPTY -> .)
+    SKP             reduce using rule 80 (EMPTY -> .)
+
+    A                              shift and go to state 134
+    EMPTY                          shift and go to state 39
+
+state 125
+
+    (51) FR -> FOR FRX SKP A . FRY
+    (26) A -> A . AX SKP
+    (53) FRY -> . F_END
+    (28) AX -> . RD
+    (29) AX -> . PR
+    (30) AX -> . CD
+    (31) AX -> . LP
+    (32) AX -> . FR
+    (33) AX -> . AR
+    (34) AX -> . US
+    (35) AX -> . EMPTY
+    (40) RD -> . READ LPAREN VAA RPAREN
+    (36) PR -> . PRINT LPAREN PX RPAREN
+    (42) CD -> . CON EL CDX SKP A CDE CDZ
+    (48) LP -> . LOOP EL LPX SKP A LPY
+    (51) FR -> . FOR FRX SKP A FRY
+    (54) AR -> . VAA VASS EA
+    (41) US -> . USE ID
+    (80) EMPTY -> .
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    F_END           shift and go to state 136
+    READ            shift and go to state 58
+    PRINT           shift and go to state 60
+    CON             shift and go to state 61
+    LOOP            shift and go to state 62
+    FOR             shift and go to state 63
+    USE             shift and go to state 64
+    SKP             reduce using rule 80 (EMPTY -> .)
+    ID              shift and go to state 26
+
+    FRY                            shift and go to state 135
+    AX                             shift and go to state 48
+    RD                             shift and go to state 50
+    PR                             shift and go to state 51
+    CD                             shift and go to state 52
+    LP                             shift and go to state 53
+    FR                             shift and go to state 54
+    AR                             shift and go to state 55
+    US                             shift and go to state 56
+    EMPTY                          shift and go to state 57
+    VAA                            shift and go to state 59
+
+state 126
+
+    (52) FRX -> ID VASS NID . SL NID COMMA NID PYC
+    (71) SL -> . GT
+    (72) SL -> . GTE
+    (73) SL -> . LT
+    (74) SL -> . LTE
+    (75) SL -> . EQ
+    (76) SL -> . NEQ
+
+    GT              shift and go to state 99
+    GTE             shift and go to state 100
+    LT              shift and go to state 101
+    LTE             shift and go to state 102
+    EQ              shift and go to state 103
+    NEQ             shift and go to state 104
+
+    SL                             shift and go to state 137
+
+state 127
+
+    (55) EA -> EA PLUS TA .
+    (58) TA -> TA . TIMES FA
+    (59) TA -> TA . DIVIDE FA
+
+    PLUS            reduce using rule 55 (EA -> EA PLUS TA .)
+    MINUS           reduce using rule 55 (EA -> EA PLUS TA .)
+    SKP             reduce using rule 55 (EA -> EA PLUS TA .)
+    RPAREN          reduce using rule 55 (EA -> EA PLUS TA .)
+    TIMES           shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 128
+
+    (56) EA -> EA MINUS TA .
+    (58) TA -> TA . TIMES FA
+    (59) TA -> TA . DIVIDE FA
+
+    PLUS            reduce using rule 56 (EA -> EA MINUS TA .)
+    MINUS           reduce using rule 56 (EA -> EA MINUS TA .)
+    SKP             reduce using rule 56 (EA -> EA MINUS TA .)
+    RPAREN          reduce using rule 56 (EA -> EA MINUS TA .)
+    TIMES           shift and go to state 114
+    DIVIDE          shift and go to state 115
+
+
+state 129
+
+    (58) TA -> TA TIMES FA .
+
+    TIMES           reduce using rule 58 (TA -> TA TIMES FA .)
+    DIVIDE          reduce using rule 58 (TA -> TA TIMES FA .)
+    PLUS            reduce using rule 58 (TA -> TA TIMES FA .)
+    MINUS           reduce using rule 58 (TA -> TA TIMES FA .)
+    SKP             reduce using rule 58 (TA -> TA TIMES FA .)
+    RPAREN          reduce using rule 58 (TA -> TA TIMES FA .)
+
+
+state 130
+
+    (59) TA -> TA DIVIDE FA .
+
+    TIMES           reduce using rule 59 (TA -> TA DIVIDE FA .)
+    DIVIDE          reduce using rule 59 (TA -> TA DIVIDE FA .)
+    PLUS            reduce using rule 59 (TA -> TA DIVIDE FA .)
+    MINUS           reduce using rule 59 (TA -> TA DIVIDE FA .)
+    SKP             reduce using rule 59 (TA -> TA DIVIDE FA .)
+    RPAREN          reduce using rule 59 (TA -> TA DIVIDE FA .)
+
+
+state 131
+
+    (62) FA -> LPAREN EA RPAREN .
+
+    TIMES           reduce using rule 62 (FA -> LPAREN EA RPAREN .)
+    DIVIDE          reduce using rule 62 (FA -> LPAREN EA RPAREN .)
+    PLUS            reduce using rule 62 (FA -> LPAREN EA RPAREN .)
+    MINUS           reduce using rule 62 (FA -> LPAREN EA RPAREN .)
+    SKP             reduce using rule 62 (FA -> LPAREN EA RPAREN .)
+    RPAREN          reduce using rule 62 (FA -> LPAREN EA RPAREN .)
+
+
+state 132
+
+    (37) PX -> PX PLUS PX .
+    (37) PX -> PX . PLUS PX
+
+  ! shift/reduce conflict for PLUS resolved as shift
+    RPAREN          reduce using rule 37 (PX -> PX PLUS PX .)
+    PLUS            shift and go to state 118
+
+  ! PLUS            [ reduce using rule 37 (PX -> PX PLUS PX .) ]
+
+
+state 133
+
+    (42) CD -> CON EL CDX SKP A . CDE CDZ
+    (26) A -> A . AX SKP
+    (43) CDE -> . CDY SKP A
+    (44) CDE -> . EMPTY
+    (28) AX -> . RD
+    (29) AX -> . PR
+    (30) AX -> . CD
+    (31) AX -> . LP
+    (32) AX -> . FR
+    (33) AX -> . AR
+    (34) AX -> . US
+    (35) AX -> . EMPTY
+    (46) CDY -> . ELSE
+    (80) EMPTY -> .
+    (40) RD -> . READ LPAREN VAA RPAREN
+    (36) PR -> . PRINT LPAREN PX RPAREN
+    (42) CD -> . CON EL CDX SKP A CDE CDZ
+    (48) LP -> . LOOP EL LPX SKP A LPY
+    (51) FR -> . FOR FRX SKP A FRY
+    (54) AR -> . VAA VASS EA
+    (41) US -> . USE ID
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    ELSE            shift and go to state 141
+    C_END           reduce using rule 80 (EMPTY -> .)
+    SKP             reduce using rule 80 (EMPTY -> .)
+    READ            shift and go to state 58
+    PRINT           shift and go to state 60
+    CON             shift and go to state 61
+    LOOP            shift and go to state 62
+    FOR             shift and go to state 63
+    USE             shift and go to state 64
+    ID              shift and go to state 26
+
+    CDE                            shift and go to state 138
+    AX                             shift and go to state 48
+    CDY                            shift and go to state 139
+    EMPTY                          shift and go to state 140
+    RD                             shift and go to state 50
+    PR                             shift and go to state 51
+    CD                             shift and go to state 52
+    LP                             shift and go to state 53
+    FR                             shift and go to state 54
+    AR                             shift and go to state 55
+    US                             shift and go to state 56
+    VAA                            shift and go to state 59
+
+state 134
+
+    (48) LP -> LOOP EL LPX SKP A . LPY
+    (26) A -> A . AX SKP
+    (50) LPY -> . L_END
+    (28) AX -> . RD
+    (29) AX -> . PR
+    (30) AX -> . CD
+    (31) AX -> . LP
+    (32) AX -> . FR
+    (33) AX -> . AR
+    (34) AX -> . US
+    (35) AX -> . EMPTY
+    (40) RD -> . READ LPAREN VAA RPAREN
+    (36) PR -> . PRINT LPAREN PX RPAREN
+    (42) CD -> . CON EL CDX SKP A CDE CDZ
+    (48) LP -> . LOOP EL LPX SKP A LPY
+    (51) FR -> . FOR FRX SKP A FRY
+    (54) AR -> . VAA VASS EA
+    (41) US -> . USE ID
+    (80) EMPTY -> .
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    L_END           shift and go to state 143
+    READ            shift and go to state 58
+    PRINT           shift and go to state 60
+    CON             shift and go to state 61
+    LOOP            shift and go to state 62
+    FOR             shift and go to state 63
+    USE             shift and go to state 64
+    SKP             reduce using rule 80 (EMPTY -> .)
+    ID              shift and go to state 26
+
+    LPY                            shift and go to state 142
+    AX                             shift and go to state 48
+    RD                             shift and go to state 50
+    PR                             shift and go to state 51
+    CD                             shift and go to state 52
+    LP                             shift and go to state 53
+    FR                             shift and go to state 54
+    AR                             shift and go to state 55
+    US                             shift and go to state 56
+    EMPTY                          shift and go to state 57
+    VAA                            shift and go to state 59
+
+state 135
+
+    (51) FR -> FOR FRX SKP A FRY .
+
+    SKP             reduce using rule 51 (FR -> FOR FRX SKP A FRY .)
+
+
+state 136
+
+    (53) FRY -> F_END .
+
+    SKP             reduce using rule 53 (FRY -> F_END .)
+
+
+state 137
+
+    (52) FRX -> ID VASS NID SL . NID COMMA NID PYC
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    NID                            shift and go to state 144
+    VAA                            shift and go to state 44
+
+state 138
+
+    (42) CD -> CON EL CDX SKP A CDE . CDZ
+    (47) CDZ -> . C_END
+
+    C_END           shift and go to state 146
+
+    CDZ                            shift and go to state 145
+
+state 139
+
+    (43) CDE -> CDY . SKP A
+
+    SKP             shift and go to state 147
+
+
+state 140
+
+    (44) CDE -> EMPTY .
+    (35) AX -> EMPTY .
+
+    C_END           reduce using rule 44 (CDE -> EMPTY .)
+    SKP             reduce using rule 35 (AX -> EMPTY .)
+
+
+state 141
+
+    (46) CDY -> ELSE .
+
+    SKP             reduce using rule 46 (CDY -> ELSE .)
+
+
+state 142
+
+    (48) LP -> LOOP EL LPX SKP A LPY .
+
+    SKP             reduce using rule 48 (LP -> LOOP EL LPX SKP A LPY .)
+
+
+state 143
+
+    (50) LPY -> L_END .
+
+    SKP             reduce using rule 50 (LPY -> L_END .)
+
+
+state 144
+
+    (52) FRX -> ID VASS NID SL NID . COMMA NID PYC
+
+    COMMA           shift and go to state 148
+
+
+state 145
+
+    (42) CD -> CON EL CDX SKP A CDE CDZ .
+
+    SKP             reduce using rule 42 (CD -> CON EL CDX SKP A CDE CDZ .)
+
+
+state 146
+
+    (47) CDZ -> C_END .
+
+    SKP             reduce using rule 47 (CDZ -> C_END .)
+
+
+state 147
+
+    (43) CDE -> CDY SKP . A
+    (26) A -> . A AX SKP
+    (27) A -> . EMPTY
+    (80) EMPTY -> .
+
+    READ            reduce using rule 80 (EMPTY -> .)
+    PRINT           reduce using rule 80 (EMPTY -> .)
+    CON             reduce using rule 80 (EMPTY -> .)
+    LOOP            reduce using rule 80 (EMPTY -> .)
+    FOR             reduce using rule 80 (EMPTY -> .)
+    USE             reduce using rule 80 (EMPTY -> .)
+    ID              reduce using rule 80 (EMPTY -> .)
+    SKP             reduce using rule 80 (EMPTY -> .)
+    C_END           reduce using rule 80 (EMPTY -> .)
+
+    A                              shift and go to state 149
+    EMPTY                          shift and go to state 39
+
+state 148
+
+    (52) FRX -> ID VASS NID SL NID COMMA . NID PYC
+    (77) NID -> . VAA
+    (78) NID -> . NUM
+    (79) NID -> . NUM DOT NUM
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    NUM             shift and go to state 45
+    ID              shift and go to state 26
+
+    NID                            shift and go to state 150
+    VAA                            shift and go to state 44
+
+state 149
+
+    (43) CDE -> CDY SKP A .
+    (26) A -> A . AX SKP
+    (28) AX -> . RD
+    (29) AX -> . PR
+    (30) AX -> . CD
+    (31) AX -> . LP
+    (32) AX -> . FR
+    (33) AX -> . AR
+    (34) AX -> . US
+    (35) AX -> . EMPTY
+    (40) RD -> . READ LPAREN VAA RPAREN
+    (36) PR -> . PRINT LPAREN PX RPAREN
+    (42) CD -> . CON EL CDX SKP A CDE CDZ
+    (48) LP -> . LOOP EL LPX SKP A LPY
+    (51) FR -> . FOR FRX SKP A FRY
+    (54) AR -> . VAA VASS EA
+    (41) US -> . USE ID
+    (80) EMPTY -> .
+    (16) VAA -> . ID
+    (17) VAA -> . ID DIM
+
+    C_END           reduce using rule 43 (CDE -> CDY SKP A .)
+    READ            shift and go to state 58
+    PRINT           shift and go to state 60
+    CON             shift and go to state 61
+    LOOP            shift and go to state 62
+    FOR             shift and go to state 63
+    USE             shift and go to state 64
+    SKP             reduce using rule 80 (EMPTY -> .)
+    ID              shift and go to state 26
+
+    AX                             shift and go to state 48
+    RD                             shift and go to state 50
+    PR                             shift and go to state 51
+    CD                             shift and go to state 52
+    LP                             shift and go to state 53
+    FR                             shift and go to state 54
+    AR                             shift and go to state 55
+    US                             shift and go to state 56
+    EMPTY                          shift and go to state 57
+    VAA                            shift and go to state 59
+
+state 150
+
+    (52) FRX -> ID VASS NID SL NID COMMA NID . PYC
+
+    PYC             shift and go to state 151
+
+
+state 151
+
+    (52) FRX -> ID VASS NID SL NID COMMA NID PYC .
+
+    SKP             reduce using rule 52 (FRX -> ID VASS NID SL NID COMMA NID PYC .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for FLOAT in state 5 resolved as shift
+WARNING: shift/reduce conflict for INT in state 5 resolved as shift
+WARNING: shift/reduce conflict for V_END in state 10 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 10 resolved as shift
+WARNING: shift/reduce conflict for INT in state 10 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 132 resolved as shift

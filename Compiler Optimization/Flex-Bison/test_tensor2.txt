@@ -1,0 +1,7 @@
+program tensor_test
+tensor A[100, 50];
+tensor B[50, 200];
+begin
+C := A @matmul B;
+end
+

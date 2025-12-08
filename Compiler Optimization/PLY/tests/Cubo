@@ -1,0 +1,30 @@
+VAR
+	INT _cubo[3][3][3]
+	INT _l, _li, _lj, _lk
+V_END
+MODULE _MAIN
+	
+	PRINT ("Inserte el tamano del cubo: ")
+	READ (_l)
+
+	FOR _lk := 0 < _l , 1;
+		FOR _lj := 0 < _l , 1;
+			FOR _li := 0 < _l , 1;
+                PRINT ("Inserte cubo[" + _lk + "][" + _lj + "][" + _li + "]: " + "n_l")
+                READ (_cubo[_lk][_lj][_li])
+		    F_END
+		F_END
+	F_END
+
+	FOR _lk := 0 < _l , 1;
+		FOR _lj := 0 < _l , 1;
+			FOR _li := 0 < _l , 1;
+                _cubo[_lk][_lj][_li] := _cubo[_lk][_lj][_li] * 2
+                PRINT (_cubo[_lk][_lj][_li] + " ")
+		    F_END
+            PRINT("n_l")
+		F_END
+        PRINT("n_l")
+	F_END
+
+M_END
