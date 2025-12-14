@@ -1,0 +1,46 @@
+# IDE and Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build artifacts - Object files
+*.o
+*.obj
+
+# Build artifacts - Executables
+compiler
+a.out
+test
+*.exe
+
+# Flex generated files
+lex.yy.c
+
+# Bison generated files
+*.tab.c
+*.tab.h
+*.output
+
+# Generated CUDA code
+generated_kernels.cu
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# PLY generated files
+parsetab.py
+parser.out
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.log
