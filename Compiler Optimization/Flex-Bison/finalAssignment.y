@@ -225,19 +225,20 @@ tensor_dims:
 ;
 
 stmt:
-    T_ID T_ASSOP expr {
-      ARST *n = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, $3);
-      ht_insert(symbolTable, $1, n);
-      $$ = n;
-    }
-  | T_ID T_ASSOP tensor_op T_SEMICOL {
-      if (!tensorGraph) tensorGraph = create_tensor_graph();
-      
-      /* Create assignment node in graph */
-      GraphNode *node = add_graph_node(tensorGraph, OP_ASSIGN, $1, NULL);
-      
-      $$ = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, NULL);
-    }
+  T_ID T_ASSOP expr {
+    ARST *n = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, $3);
+    ht_insert(symbolTable, $1, n);
+    $$ = n;
+  }
+
+| T_ID T_ASSOP tensor_op {
+    if (!tensorGraph) tensorGraph = create_tensor_graph();
+
+    /* Create assignment node in graph */
+    GraphNode *node = add_graph_node(tensorGraph, OP_ASSIGN, $1, NULL);
+
+    $$ = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, NULL);
+  }
   | T_DOIF T_OPENPAR expression T_CLOSEPAR
            T_OPENBRACK opt_stmts T_CLOSEBRACK {
       $$ = newNode(0, T_DOIF, "do-if", 0,0.0f, $3, $6);
@@ -271,9 +272,10 @@ opt_stmts:
 ;
 
 stmt_lst:
-    stmt T_SEMICOL stmt_lst { $$ = newNode(0,0,"stmt_lst",0,0.0f,$1,$3); }
-  | stmt                   { $$ = $1; }
+    stmt T_SEMICOL stmt_lst   { $$ = newNode(0,0,"stmt_lst",0,0.0f,$1,$3); }
+  | stmt T_SEMICOL            { $$ = $1; }
 ;
+
 
 expr:
     expr T_PLUSOP  term { $$ = newNode(0,T_PLUSOP, "add",0,0.0f,$1,$3); }
