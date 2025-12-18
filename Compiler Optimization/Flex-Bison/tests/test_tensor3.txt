@@ -1,0 +1,6 @@
+program tensortest
+tensor ACOL[4964036, 49];
+tensor BCOL[49, 1];
+begin
+C := ACOL @matmul BCOL;
+end

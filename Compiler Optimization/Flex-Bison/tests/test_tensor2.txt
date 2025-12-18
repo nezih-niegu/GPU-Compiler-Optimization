@@ -1,6 +1,6 @@
-program tensor_test
-tensor A[100, 50];
-tensor B[50, 200];
+program tensortest
+tensor A[1000, 5000];
+tensor B[5000, 2000];
 begin
 C := A @matmul B;
 end

@@ -1,9 +1,13 @@
-program tensor_test
+program tensortest
 tensor A[100,50];
 tensor B[50,200];
+tensor C[100,200];
+tensor D[100,50];
+tensor E[50,100];
+tensor F[50];
 begin
 C := A @matmul B;
-D := A + A;
-E := @transpose(A);
+D := B @matmul C;
+E := @transpose(D);
 F := @reduce(A, 0);
 end
