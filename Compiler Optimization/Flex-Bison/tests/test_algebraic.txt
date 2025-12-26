@@ -1,0 +1,13 @@
+program test_algebraic
+tensor A[10,10];
+tensor B[10,10];
+tensor Zero[10,10];
+tensor One[10,10];
+tensor C[10,10];
+tensor D[10,10];
+tensor E[10,10];
+begin
+  C := A + Zero;
+  D := A * One;
+  E := C * D;
+end

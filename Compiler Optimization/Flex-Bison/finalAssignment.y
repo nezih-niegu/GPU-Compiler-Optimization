@@ -10,6 +10,7 @@
 #include "optimizer.h"
 #include "cuda_gen.h"
 #include "geometry.h"
+#include "llvm_lowering.h"
 
 int  yylex(void);
 int  yyerror(const char *s);
@@ -118,6 +119,14 @@ start_program:
         /* Generate CUDA code */
         generate_cuda_code(tensorGraph, "generated_kernels.cu");
         printf("\nCUDA code generated in: generated_kernels.cu\n");
+        
+        /* Generate LLVM IR for analysis */
+        if (lower_graph_to_llvm_ir(tensorGraph, "tensor_output.ll") == 0) {
+            printf("LLVM IR generated in: tensor_output.ll\n");
+            printf("Run './llvm_analyze.sh tensor_output.ll' for detailed analysis\n");
+        } else {
+            fprintf(stderr, "Warning: LLVM IR generation failed\n");
+        }
         
         free_opt_result(opt_result);
       }

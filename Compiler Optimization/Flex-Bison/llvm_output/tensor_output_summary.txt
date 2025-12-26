@@ -1,0 +1,49 @@
+========================================
+LLVM Analysis Summary
+========================================
+Input: tensor_output.ll
+Date: Thu Dec 25 17:47:15 CST 2025
+
+OPTIMIZATION METRICS
+────────────────────────────────────────
+Stage                Instructions    Reduction
+────────────────────────────────────────
+Baseline (O0)        19          -
+After DCE            19          0
+After CSE            19          0
+After InstCombine    19          0
+After -O3            19          0 (0.0%)
+────────────────────────────────────────
+
+MEMORY OPERATIONS
+────────────────────────────────────────
+                     Baseline        After mem2reg
+Load operations      00             00
+Store operations     00             00
+Total                0             0
+Reduction: 0 operations
+────────────────────────────────────────
+
+FUNCTION CALLS
+────────────────────────────────────────
+Total calls:         37
+Tensor allocations:  19
+────────────────────────────────────────
+
+GENERATED FILES
+────────────────────────────────────────
+• tensor_output_dce.ll           - After Dead Code Elimination
+• tensor_output_cse.ll           - After Common Subexpr Elimination
+• tensor_output_instcombine.ll   - After Instruction Combining
+• tensor_output_mem2reg.ll       - After Memory-to-Register
+• tensor_output_O3.ll            - Full -O3 optimization
+• tensor_output_summary.txt      - This summary
+• tensor_output_analysis.log     - Full analysis log
+────────────────────────────────────────
+
+LLVM TOOLS USED
+────────────────────────────────────────
+clang: /Users/fernandohernandez/Documents/GitHub/llvm-project/build/bin/clang
+opt:   /Users/fernandohernandez/Documents/GitHub/llvm-project/build/bin/opt
+llc:   /Users/fernandohernandez/Documents/GitHub/llvm-project/build/bin/llc
+────────────────────────────────────────
