@@ -44,16 +44,3 @@ desktop.ini
 *.tmp
 *.bak
 *.log
-
-#Build 
-Compiler Optimization/Flex-Bison/geometry.o
-Compiler Optimization/Flex-Bison/lex.yy.c
-Compiler Optimization/Flex-Bison/lex.yy.o
-Compiler Optimization/Flex-Bison/optimizer.o
-Compiler Optimization/Flex-Bison/tensor_graph.o
-Compiler Optimization/Flex-Bison/cuda_gen.ob
-Compiler Optimization/Flex-Bison/compiler
-Compiler Optimization/Flex-Bison/generated_kernels.cu
-Compiler Optimization/Flex-Bison/finalAssignment.tab.h
-Compiler Optimization/Flex-Bison/finalAssignment.tab.c
-Compiler Optimization/Flex-Bison/finalAssignment.tab.o
