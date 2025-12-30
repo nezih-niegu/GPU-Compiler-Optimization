@@ -1,0 +1,8 @@
+=== Baseline (Unoptimized) Metrics ===
+
+Instructions: 19
+Load operations: 00
+Store operations: 00
+Total memory ops: 0
+Function calls: 37
+Tensor allocations: 19

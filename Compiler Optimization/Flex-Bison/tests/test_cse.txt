@@ -1,0 +1,11 @@
+program test_cse
+tensor A[10,10];
+tensor B[10,10];
+tensor C[10,10];
+tensor D[10,10];
+tensor E[10,10];
+begin
+  C := A @matmul B;
+  D := A @matmul B;
+  E := C + D;
+end

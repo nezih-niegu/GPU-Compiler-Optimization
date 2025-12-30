@@ -7,8 +7,8 @@ LDFLAGS=-lm
 # Source files
 LEX_SRC=finalAssignment.l
 YACC_SRC=finalAssignment.y
-C_SRCS=tensor_graph.c optimizer.c cuda_gen.c geometry.c
-HDRS=types.h tensor_graph.h optimizer.h cuda_gen.h geometry.h
+C_SRCS=tensor_graph.c optimizer.c cuda_gen.c geometry.c llvm_lowering.c
+HDRS=types.h tensor_graph.h optimizer.h cuda_gen.h geometry.h llvm_lowering.h
 
 # Generated files
 LEX_OUT=lex.yy.c
@@ -39,10 +39,31 @@ $(YACC_OUT) $(YACC_HEADER): $(YACC_SRC)
 
 clean:
 	rm -f $(TARGET) $(OBJS) $(LEX_OUT) $(YACC_OUT) $(YACC_HEADER) generated_kernels.cu
+	rm -f *.ll *.bc llvm_output/*.ll llvm_output/*.txt llvm_output/*.log
+	rm -rf llvm_output
 
 test: $(TARGET)
-	@echo "Testing with pruebaT51.txt:"
-	./$(TARGET) pruebaT51.txt
-	@echo "\nTesting with pruebaT52.txt:"
-	./$(TARGET) pruebaT52.txt
+	@echo "Testing with simple_test.txt:"
+	./$(TARGET) < tests/simple_test.txt
 
+# LLVM Integration targets
+llvm-test: $(TARGET)
+	@echo "========================================="
+	@echo "LLVM Integration Test"
+	@echo "========================================="
+	@mkdir -p llvm_output
+	@echo "Generating LLVM IR from test case..."
+	./$(TARGET) < tests/simple_test.txt
+	@if [ -f tensor_output.ll ]; then \
+		echo "✓ LLVM IR generated: tensor_output.ll"; \
+		echo "Running LLVM analysis pipeline..."; \
+		./llvm_analyze.sh tensor_output.ll llvm_output; \
+	else \
+		echo "✗ No LLVM IR generated"; \
+	fi
+
+llvm-analyze: tensor_output.ll
+	@echo "Running LLVM analysis on tensor_output.ll..."
+	./llvm_analyze.sh tensor_output.ll llvm_output
+
+.PHONY: llvm-test llvm-analyze

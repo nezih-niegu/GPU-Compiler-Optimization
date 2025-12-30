@@ -1,0 +1,11 @@
+program test_fusion
+tensor A[100,100];
+tensor B[100,100];
+tensor C[100,100];
+tensor D[100,100];
+tensor E[100,100];
+begin
+  C := A + B;
+  D := C * A;
+  E := D + B;
+end
