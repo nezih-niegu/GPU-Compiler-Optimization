@@ -2,7 +2,7 @@
 LLVM Analysis Summary
 ========================================
 Input: tensor_output.ll
-Date: Mon Dec 29 18:09:58 CST 2025
+Date: Mon Dec 29 06:50:06 PM CST 2025
 
 OPTIMIZATION METRICS
 ────────────────────────────────────────
@@ -43,7 +43,7 @@ GENERATED FILES
 
 LLVM TOOLS USED
 ────────────────────────────────────────
-clang: /Users/fernandohernandez/Documents/GitHub/llvm-project/build/bin/clang
-opt:   /Users/fernandohernandez/Documents/GitHub/llvm-project/build/bin/opt
-llc:   /Users/fernandohernandez/Documents/GitHub/llvm-project/build/bin/llc
+clang: /usr/bin/clang
+opt:   /usr/bin/opt
+llc:   /usr/bin/llc
 ────────────────────────────────────────
