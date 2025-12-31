@@ -9,7 +9,8 @@
 4. [System Architecture](#system-architecture)
 5. [Data Structures and Algorithms](#data-structures-and-algorithms)
 6. [Experimental Results](#experimental-results)
-7. [Getting Started](#getting-started)
+7. [LLVM Integration](#llvm-integration)
+8. [Getting Started](#getting-started)
 
 ---
 
@@ -653,6 +654,7 @@ make
 The compiler generates:
 - **Console output**: Execution tree, symbol table, graph visualization, optimization report
 - **`generated_kernels.cu`**: CUDA code ready for compilation with `nvcc`
+- **`tensor_output.ll`**: LLVM IR for analysis and optimization validation (see [LLVM Integration](#llvm-integration))
 
 ### Project Structure
 
@@ -664,12 +666,94 @@ Compiler Design/
 │   ├── tensor_graph.c/h  # Graph data structures
 │   ├── optimizer.c/h     # Optimization algorithms
 │   ├── cuda_gen.c/h      # CUDA code generation
-│   └── geometry.c/h      # Computational geometry
+│   ├── geometry.c/h      # Computational geometry
+│   ├── llvm_lowering.c/h # LLVM IR generation
+│   └── llvm_analyze.sh   # LLVM analysis pipeline
 └── PLY/                  # Python-based parser (alternative implementation)
 ```
 
+---
+
+## LLVM Integration
+
+### Overview
+
+The compiler features a **dual backend architecture** that generates both CUDA code and LLVM IR in parallel. This enables industry-standard optimization validation and performance analysis without requiring GPU execution.
+
+### Key Features
+
+- **9-stage analysis pipeline**: Automated LLVM optimization passes (DCE, CSE, InstCombine, Mem2Reg, O3)
+- **Comprehensive metrics**: Instruction count, memory operations, function calls, reduction percentages
+- **Performance timing**: Per-phase execution times with millisecond precision
+- **Control flow analysis**: CFG generation for visualization
+
+### Quick Start
+
+```bash
+# Generate both CUDA and LLVM IR
+./compiler < tests/test_tensor.txt
+
+# Run analysis pipeline
+./llvm_analyze.sh tensor_output.ll llvm_output/
+
+# View results
+cat llvm_output/tensor_output_summary.txt
+```
+
+### Analysis Pipeline
+
+| Stage | LLVM Pass | Purpose |
+|-------|-----------|---------|
+| 1. Verify | `llvm-as` | Validate IR correctness |
+| 2. Baseline | - | Extract unoptimized metrics |
+| 3. DCE | `-passes=dce` | Dead code elimination |
+| 4. CSE | `-passes=early-cse` | Common subexpression elimination |
+| 5. InstCombine | `-passes=instcombine` | Algebraic simplification |
+| 6. Mem2Reg | `-passes=mem2reg` | Memory-to-register promotion |
+| 7. O3 | `-O3` | Full optimization |
+| 8. CFG | `-passes=dot-cfg` | Control flow graph |
+| 9. Summary | - | Generate report with timing |
+
+### Example Output
+
+```
+OPTIMIZATION METRICS
+────────────────────────────────────────
+Stage                Instructions    Reduction    Time (s)
+────────────────────────────────────────
+Baseline (O0)        19          -            -
+After DCE            19          0            0.322
+After CSE            19          0            0.121
+After InstCombine    19          0            0.106
+After -O3            19          0 (0.0%)    0.149
+────────────────────────────────────────
+Total pipeline time: 1.151s
+```
+
+### Why LLVM Integration?
+
+- ✅ **Industry validation**: Compare against LLVM's proven optimizations
+- ✅ **No GPU required**: All analysis at IR level
+- ✅ **Reproducible metrics**: Deterministic instruction counts
+- ✅ **Educational clarity**: Human-readable IR for debugging
+- ✅ **Extensible**: Easy to add new analysis passes
+
 ### Documentation
 
+See **`LLVM_DOCUMENTATION.md`** for comprehensive documentation including:
+- Complete architecture and design
+- Installation and setup instructions
+- Usage workflows and examples
+- Test cases and benchmarks
+- LLVM commands reference
+
+---
+
+## Documentation
+
+## Documentation
+
+- **`LLVM_DOCUMENTATION.md`**: Complete LLVM integration guide (design, usage, tests)
 - **`DOCUMENTACION.md`**: Complete project documentation (Spanish)
 - **`ANALISIS_ALGORITMOS.md`**: Detailed algorithm analysis and complexity
 - **`PROJECT_ANSWERS.md`**: Answers to project questions
