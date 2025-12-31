@@ -30,7 +30,7 @@ This document describes the manual code changes needed to integrate LLVM IR gene
         /* Generate LLVM IR for analysis */
         if (lower_graph_to_llvm_ir(tensorGraph, "tensor_output.ll") == 0) {
             printf("LLVM IR generated in: tensor_output.ll\n");
-            printf("Run './llvm_analyze.sh tensor_output.ll' for analysis\n");
+            printf("Run './llvm_analyze.sh tensor_output.ll' for detailed analysis with timing\n");
         } else {
             fprintf(stderr, "Warning: LLVM IR generation failed\n");
         }

@@ -51,7 +51,7 @@ This document maps the tensor-based compiler framework to LLVM concepts, establi
 | **Geometry Module** | Polyhedral Analysis (`Polly`) | Iteration space analysis, loop bounds | `geometry.h/c` |
 | **IterationSpace** | Polyhedral Sets (ISL) | Mathematical loop representation | `struct IterationSpace` |
 | **LLVM Lowering Module** | `clang::CodeGen` (IRGen) | TensorGraph → LLVM IR translation | `llvm_lowering.h/c` |
-| **LLVM Analysis Pipeline** | `opt` pass pipeline | Run optimization passes, extract metrics | `llvm_analyze.sh` |
+| **LLVM Analysis Pipeline** | `opt` pass pipeline | Run optimization passes, extract metrics + timing | `llvm_analyze.sh` |
 | **LLVM Configuration** | Build system | LLVM tool paths and setup | `llvm_config.sh` |
 | **CUDA Code Generator** | `llvm::CodeGen` / Backend | Target code emission | `cuda_gen.h/c` |
 | **Kernel Generation** | Machine Code Emission | Generate target-specific kernels | `generate_*_kernel()` |
@@ -137,6 +137,7 @@ This document maps the tensor-based compiler framework to LLVM concepts, establi
 │  Post-Processing (LLVM path):                                    │
 │  - llvm_analyze.sh: Run optimization passes (DCE, CSE, etc.)     │
 │  - Extract metrics: instruction count, memory ops, function calls│
+│  - Measure timing: per-phase execution time + total pipeline time│
 │  - Generate reports: summary.txt, analysis.log                   │
 │                                                                  │
 │  Analogous to: LLVM assembly output (.s) or object files (.o)   │

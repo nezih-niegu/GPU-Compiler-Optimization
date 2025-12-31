@@ -587,6 +587,7 @@ llvm-dis output.bc | grep "fadd\|fmul\|load\|store" | sort | uniq -c
 # extract_llvm_metrics.sh
 
 IR_FILE=$1
+START_TIME=$(date +%s.%N)
 
 echo "=== LLVM IR Metrics for $IR_FILE ==="
 
@@ -598,6 +599,11 @@ echo "Total Instructions: $TOTAL_INST"
 FADD=$(grep -c 'fadd' "$IR_FILE")
 FMUL=$(grep -c 'fmul' "$IR_FILE")
 echo "Arithmetic: $FADD adds, $FMUL multiplies"
+
+# Timing
+END_TIME=$(date +%s.%N)
+ELAPSED=$(awk "BEGIN {printf \"%.3f\", $END_TIME - $START_TIME}")
+echo "Analysis time: ${ELAPSED}s"
 
 # Memory operations
 LOADS=$(grep -c 'load' "$IR_FILE")

@@ -25,16 +25,16 @@ LLVM Version: 22.0.0 (~/Documents/GitHub/llvm-project/build/bin)
   - Exports LLVM_CLANG, LLVM_OPT, LLVM_LLC, LLVM_DIS, LLVM_AS
   - Verifies all tools exist before proceeding
 
-- **`llvm_analyze.sh`** (231 lines) - 9-stage analysis pipeline
-  - Stage 1: Verify IR with llvm-as
-  - Stage 2: Extract baseline metrics (instructions, memory ops, calls)
-  - Stage 3: Dead Code Elimination (-passes=dce)
-  - Stage 4: Common Subexpression Elimination (-passes=early-cse)
-  - Stage 5: Instruction Combining (-passes=instcombine)
-  - Stage 6: Memory-to-Register Promotion (-passes=mem2reg)
-  - Stage 7: Full -O3 optimization
-  - Stage 8: Control Flow Graph generation (-passes=dot-cfg)
-  - Stage 9: Summary report with reduction metrics
+- **`llvm_analyze.sh`** (231 lines) - 9-stage analysis pipeline with timing
+  - Stage 1: Verify IR with llvm-as + time measurement
+  - Stage 2: Extract baseline metrics (instructions, memory ops, calls) + time
+  - Stage 3: Dead Code Elimination (-passes=dce) + time
+  - Stage 4: Common Subexpression Elimination (-passes=early-cse) + time
+  - Stage 5: Instruction Combining (-passes=instcombine) + time
+  - Stage 6: Memory-to-Register Promotion (-passes=mem2reg) + time
+  - Stage 7: Full -O3 optimization + time
+  - Stage 8: Control Flow Graph generation (-passes=dot-cfg) + time
+  - Stage 9: Summary report with reduction metrics + phase timings + total time
 
 ### 3. Testing Framework
 - **5 Test Cases** (tests/*.txt):

@@ -179,14 +179,31 @@ LLVM Analysis Summary
 
 OPTIMIZATION METRICS
 ────────────────────────────────────────
-Stage                Instructions    Reduction
+Stage                Instructions    Reduction    Time (s)
 ────────────────────────────────────────
-Baseline (O0)        45          -
-After DCE            36          9
-After CSE            34          2
-After InstCombine    30          4
-After -O3            28          17 (37.8%)
+Baseline (O0)        45          -            -
+After DCE            36          9            0.023
+After CSE            34          2            0.018
+After InstCombine    30          4            0.021
+After -O3            28          17 (37.8%)   0.156
 ────────────────────────────────────────
+
+PHASE TIMING
+────────────────────────────────────────
+Phase                                    Time (s)
+────────────────────────────────────────
+[1/9] Verify Input IR                   0.012
+[2/9] Extract Baseline Metrics          0.008
+[3/9] Dead Code Elimination             0.023
+[4/9] Common Subexpression Elimination  0.018
+[5/9] Instruction Combining             0.021
+[6/9] Memory-to-Register Promotion      0.015
+[7/9] Full -O3 Optimization             0.156
+[8/9] Control Flow Graph Generation     0.019
+[9/9] Summary Generation                (current)
+────────────────────────────────────────
+
+Total pipeline time: 0.289s
 ```
 
 ---
@@ -199,15 +216,15 @@ The `llvm_analyze.sh` script runs a sequence of LLVM optimization passes:
 
 | Stage | LLVM Pass | Purpose | Metrics Extracted |
 |-------|-----------|---------|-------------------|
-| **1. Verify** | `llvm-as` | Check IR validity | ✓/✗ |
-| **2. Baseline** | - | Count instructions | Instruction count, memory ops |
-| **3. DCE** | `-passes=dce` | Remove dead code | Instructions removed |
-| **4. CSE** | `-passes=early-cse` | Eliminate redundancy | Duplicates merged |
-| **5. InstCombine** | `-passes=instcombine` | Algebraic simplification | Identity ops removed |
-| **6. Mem2Reg** | `-passes=mem2reg` | Promote to registers | Load/store reduction |
-| **7. O3** | `-O3` | Full optimization | Overall reduction % |
-| **8. CFG** | `-passes=dot-cfg` | Control flow graph | .dot files |
-| **9. Summary** | - | Generate report | Summary.txt |
+| **1. Verify** | `llvm-as` | Check IR validity | ✓/✗ + Time (s) |
+| **2. Baseline** | - | Count instructions | Instruction count, memory ops + Time (s) |
+| **3. DCE** | `-passes=dce` | Remove dead code | Instructions removed + Time (s) |
+| **4. CSE** | `-passes=early-cse` | Eliminate redundancy | Duplicates merged + Time (s) |
+| **5. InstCombine** | `-passes=instcombine` | Algebraic simplification | Identity ops removed + Time (s) |
+| **6. Mem2Reg** | `-passes=mem2reg` | Promote to registers | Load/store reduction + Time (s) |
+| **7. O3** | `-O3` | Full optimization | Overall reduction % + Time (s) |
+| **8. CFG** | `-passes=dot-cfg` | Control flow graph | .dot files + Time (s) |
+| **9. Summary** | - | Generate report | Summary.txt + Time (s) |
 
 ### Output Files
 
