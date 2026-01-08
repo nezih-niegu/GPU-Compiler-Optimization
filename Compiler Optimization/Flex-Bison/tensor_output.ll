@@ -23,53 +23,20 @@ declare void @llvm.memcpy.p0.p0.i64(i8*, i8*, i64, i1) nounwind
 define i32 @main() {
 entry:
   ; Tensor allocations
-  %0 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'A' [50x100]
-  %1 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'B' [200x50]
-  %2 = call float* @tensor_alloc(i32 20000)  ; Allocate tensor 'C' [200x100]
-  %3 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'D' [50x100]
-  %4 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'E' [100x50]
-  %5 = call float* @tensor_alloc(i32 50)  ; Allocate tensor 'F' [50]
-  %6 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'A' [100x50]
-  %7 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'B' [50x200]
-  %8 = call float* @tensor_alloc(i32 20000)  ; Allocate tensor 'temp' [100x200]
-  %9 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'B' [100x50]
-  %10 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'C' [50x200]
-  %11 = call float* @tensor_alloc(i32 20000)  ; Allocate tensor 'temp' [100x200]
-  %12 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'D' [100x50]
-  %13 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'temp' [50x100]
-  %14 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'A' [100x100]
+  %0 = call float* @tensor_alloc(i32 243237764)  ; Allocate tensor 'ACOL' [49x4964036]
+  %1 = call float* @tensor_alloc(i32 49)  ; Allocate tensor 'BCOL' [1x49]
+  %2 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'ACOL' [100x50]
+  %3 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'BCOL' [50x200]
+  %4 = call float* @tensor_alloc(i32 20000)  ; Allocate tensor 'temp' [100x200]
 
   ; Tensor operations
-  ; Matrix multiplication: (null) = A @ B
+  ; Matrix multiplication: (null) = ACOL @ BCOL
   ; !memory_access = "sequential_rows"
   ; !compute_ops = 1000000
   ; !memory_ops = 35000
   ; !arithmetic_intensity = 28.57
-  %15 = call float* @tensor_alloc(i32 20000)
-  call void @tensor_matmul(float* %15, float* %6, float* %7, i32 100, i32 50, i32 200)
-  ; Unknown operation type: 6
-  ; Matrix multiplication: (null) = B @ C
-  ; !memory_access = "sequential_rows"
-  ; !compute_ops = 1000000
-  ; !memory_ops = 35000
-  ; !arithmetic_intensity = 28.57
-  %16 = call float* @tensor_alloc(i32 20000)
-  call void @tensor_matmul(float* %16, float* %9, float* %10, i32 100, i32 50, i32 200)
-  ; Unknown operation type: 6
-  ; Transpose: (null) = transpose(D)
-  ; !memory_access = "strided_columns"
-  ; !compute_ops = 5000
-  ; !memory_ops = 10000
-  ; !arithmetic_intensity = 0.50
-  %17 = call float* @tensor_alloc(i32 5000)
-  call void @tensor_transpose(float* %17, float* %12, i32 100, i32 50)
-  ; Unknown operation type: 6
-  ; Reduce sum: (null) = reduce_sum(A)
-  ; !memory_access = "linear"
-  ; !compute_ops = 200
-  ; !memory_ops = 10100
-  ; !arithmetic_intensity = 0.02
-  %18 = call float @tensor_reduce_sum(float* %14, i32 10000)
+  %5 = call float* @tensor_alloc(i32 20000)
+  call void @tensor_matmul(float* %5, float* %2, float* %3, i32 100, i32 50, i32 200)
   ; Unknown operation type: 6
 
   ; Cleanup
@@ -77,17 +44,7 @@ entry:
   call void @tensor_free(float* %1)
   call void @tensor_free(float* %2)
   call void @tensor_free(float* %3)
-  call void @tensor_free(float* %4)
   call void @tensor_free(float* %5)
-  call void @tensor_free(float* %6)
-  call void @tensor_free(float* %7)
-  call void @tensor_free(float* %15)
-  call void @tensor_free(float* %9)
-  call void @tensor_free(float* %10)
-  call void @tensor_free(float* %16)
-  call void @tensor_free(float* %12)
-  call void @tensor_free(float* %17)
-  call void @tensor_free(float* %14)
   ret i32 0
 }
 

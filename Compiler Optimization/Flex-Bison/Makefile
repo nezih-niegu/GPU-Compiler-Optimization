@@ -7,8 +7,8 @@ LDFLAGS=-lm
 # Source files
 LEX_SRC=finalAssignment.l
 YACC_SRC=finalAssignment.y
-C_SRCS=tensor_graph.c optimizer.c cuda_gen.c geometry.c llvm_lowering.c
-HDRS=types.h tensor_graph.h optimizer.h cuda_gen.h geometry.h llvm_lowering.h
+C_SRCS=tensor_graph.c optimizer.c cuda_gen.c geometry.c llvm_lowering.c validator.c
+HDRS=types.h tensor_graph.h optimizer.h cuda_gen.h geometry.h llvm_lowering.h validator.h
 
 # Generated files
 LEX_OUT=lex.yy.c

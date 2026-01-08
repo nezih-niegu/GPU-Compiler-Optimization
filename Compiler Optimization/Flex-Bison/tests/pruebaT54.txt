@@ -1,10 +1,10 @@
-program tres
-int: x,y,z
+program cuatro
+int: x,y,z;
 begin
    read y;
    read x;
    x := 4 + 4;
    print x;
    y := x + (z * 2 + 4);
-   print y
+   print y;
 end

@@ -7,7 +7,7 @@ extern char *yytext;
 
 WS    [ \t]+
 NL    (\r?\n)
-ID    [A-Za-z][A-Za-z0-9]*
+ID    [A-Za-z][A-Za-z0-9_]*
 INT   [0-9]+
 FLT   ([0-9]+[.][0-9]*)|([.][0-9]+)
 
