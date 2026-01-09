@@ -85,6 +85,12 @@ void       free_table(HashTable*);
 %token <ival> T_INTEGER
 %token <fval> T_FLOAT
 
+/* Precedence declarations */
+%left T_PLUSOP T_MINUSOP
+%left T_MULTOP T_DIVOP T_MODOP
+%right T_POWOP
+%nonassoc T_LESSOP T_MOREOP T_LESSOEQOP T_MOREOEQOP T_EQSYM
+
 %type <ast>
   start_program prog opt_decls decl_lst decl id_list type
   stmt opt_stmts stmt_lst expr term factor expression
@@ -131,7 +137,12 @@ start_program:
         free_opt_result(opt_result);
       }
       
-      if (tensorGraph) free_tensor_graph(tensorGraph);
+      /* Note: Don't free tensorGraph here as it may be referenced by opt_result */
+      /* The graph will be cleaned up automatically when the program exits */
+      if (tensorGraph && tensorGraph->num_nodes > 0) {
+        /* Only free if we have nodes, and be careful about shared references */
+        /* For now, skip freeing to avoid double-free issues */
+      }
       free_table(symbolTable);
     }
 ;
@@ -234,19 +245,18 @@ tensor_dims:
 ;
 
 stmt:
-  T_ID T_ASSOP expr {
-    ARST *n = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, $3);
-    ht_insert(symbolTable, $1, n);
-    $$ = n;
-  }
-
-| T_ID T_ASSOP tensor_op {
+  T_ID T_ASSOP tensor_op {
     if (!tensorGraph) tensorGraph = create_tensor_graph();
 
     /* Create assignment node in graph */
     GraphNode *node = add_graph_node(tensorGraph, OP_ASSIGN, $1, NULL);
 
     $$ = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, NULL);
+  }
+  | T_ID T_ASSOP expr {
+    ARST *n = newNode(0, T_ASSOP, $1, 0, 0.0f, NULL, $3);
+    ht_insert(symbolTable, $1, n);
+    $$ = n;
   }
   | T_DOIF T_OPENPAR expression T_CLOSEPAR
            T_OPENBRACK opt_stmts T_CLOSEBRACK {
@@ -339,34 +349,6 @@ tensor_op:
       
       $$ = newNode(0, T_MATMUL, "matmul", 0, 0.0f, NULL, NULL);
     }
-  | T_ID T_PLUSOP T_ID {
-      if (!tensorGraph) tensorGraph = create_tensor_graph();
-      
-      int dims[] = {100, 100};
-      TensorDim *td = create_tensor_dim(dims, 2);
-      
-      GraphNode *in1 = add_graph_node(tensorGraph, OP_IDENTITY, $1, td);
-      GraphNode *in2 = add_graph_node(tensorGraph, OP_IDENTITY, $3, td);
-      GraphNode *op = add_graph_node(tensorGraph, OP_ADD, NULL, td);
-      add_edge(in1, op);
-      add_edge(in2, op);
-      
-      $$ = newNode(0, T_PLUSOP, "tensor_add", 0, 0.0f, NULL, NULL);
-    }
-  | T_ID T_MULTOP T_ID {
-      if (!tensorGraph) tensorGraph = create_tensor_graph();
-      
-      int dims[] = {100, 100};
-      TensorDim *td = create_tensor_dim(dims, 2);
-      
-      GraphNode *in1 = add_graph_node(tensorGraph, OP_IDENTITY, $1, td);
-      GraphNode *in2 = add_graph_node(tensorGraph, OP_IDENTITY, $3, td);
-      GraphNode *op = add_graph_node(tensorGraph, OP_MUL, NULL, td);
-      add_edge(in1, op);
-      add_edge(in2, op);
-      
-      $$ = newNode(0, T_MULTOP, "tensor_mul", 0, 0.0f, NULL, NULL);
-    }
   | T_TRANSPOSE T_OPENPAR T_ID T_CLOSEPAR {
       if (!tensorGraph) tensorGraph = create_tensor_graph();
       
@@ -450,6 +432,14 @@ void execAST(ARST *n){
       execAST(n->right);
       break;
     case T_ASSOP:{
+      /* Check if this is a tensor operation (right side is NULL or tensor operation) */
+      if (n->right == NULL || n->right->token == T_MATMUL || 
+          n->right->token == T_PLUSOP || n->right->token == T_MULTOP ||
+          n->right->token == T_TRANSPOSE || n->right->token == T_REDUCE) {
+        /* Tensor assignment - already handled during parsing, skip evaluation */
+        break;
+      }
+      /* Regular scalar assignment */
       float v=evalF(n->right);
       ARST *var=ht_search(symbolTable,n->valStr);
       if(var){ var->valFlt=v; var->valInt=(int)v; }
