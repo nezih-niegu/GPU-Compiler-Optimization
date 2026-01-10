@@ -25,9 +25,10 @@ entry:
   ; Tensor allocations
   %0 = call float* @tensor_alloc(i32 243237764)  ; Allocate tensor 'ACOL' [49x4964036]
   %1 = call float* @tensor_alloc(i32 49)  ; Allocate tensor 'BCOL' [1x49]
-  %2 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'ACOL' [100x50]
-  %3 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'BCOL' [50x200]
-  %4 = call float* @tensor_alloc(i32 20000)  ; Allocate tensor 'temp' [100x200]
+  %2 = call float* @tensor_alloc(i32 4964036)  ; Allocate tensor 'C' [1x4964036]
+  %3 = call float* @tensor_alloc(i32 5000)  ; Allocate tensor 'ACOL' [100x50]
+  %4 = call float* @tensor_alloc(i32 10000)  ; Allocate tensor 'BCOL' [50x200]
+  %5 = call float* @tensor_alloc(i32 20000)  ; Allocate tensor 'temp' [100x200]
 
   ; Tensor operations
   ; Matrix multiplication: (null) = ACOL @ BCOL
@@ -35,8 +36,8 @@ entry:
   ; !compute_ops = 1000000
   ; !memory_ops = 35000
   ; !arithmetic_intensity = 28.57
-  %5 = call float* @tensor_alloc(i32 20000)
-  call void @tensor_matmul(float* %5, float* %2, float* %3, i32 100, i32 50, i32 200)
+  %6 = call float* @tensor_alloc(i32 20000)
+  call void @tensor_matmul(float* %6, float* %3, float* %4, i32 100, i32 50, i32 200)
   ; Unknown operation type: 6
 
   ; Cleanup
@@ -44,7 +45,8 @@ entry:
   call void @tensor_free(float* %1)
   call void @tensor_free(float* %2)
   call void @tensor_free(float* %3)
-  call void @tensor_free(float* %5)
+  call void @tensor_free(float* %4)
+  call void @tensor_free(float* %6)
   ret i32 0
 }
 

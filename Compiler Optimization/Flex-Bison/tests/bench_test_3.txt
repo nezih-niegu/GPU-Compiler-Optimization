@@ -1,0 +1,7 @@
+program bench_test_3
+tensor ACOL[4964036,49];
+tensor BCOL[49,1];
+tensor C[4964036,1];
+begin
+C := ACOL @matmul BCOL;
+end

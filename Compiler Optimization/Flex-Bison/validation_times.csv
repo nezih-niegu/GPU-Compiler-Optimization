@@ -1,0 +1,4 @@
+test,status,compile_ms,verify_ms,analyze_ms,total_ms,kernels,ir_bytes,o3_bytes,ir_reduction_pct
+bench_test_1.txt,PASS,3.732,12.417,167.871,184.020,5,4554,2876,36.85
+bench_test_2.txt,PASS,3.445,11.161,168.397,183.003,1,2030,1244,38.72
+bench_test_3.txt,PASS,3.439,12.825,161.092,177.356,1,2040,1240,39.22

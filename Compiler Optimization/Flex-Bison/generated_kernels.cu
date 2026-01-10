@@ -6,7 +6,7 @@
 #define BLOCK_SIZE 16
 #define THREADS_PER_BLOCK 256
 
-__global__ void matmul_kernel_4(float *A, float *B, float *C, int M, int N, int K) {
+__global__ void matmul_kernel_5(float *A, float *B, float *C, int M, int N, int K) {
     int row = blockIdx.y * blockDim.y + threadIdx.y;
     int col = blockIdx.x * blockDim.x + threadIdx.x;
     
@@ -31,7 +31,7 @@ int main() {
     /* Launch kernels */
     dim3 blockSize(BLOCK_SIZE, BLOCK_SIZE);
     dim3 gridSize((N + BLOCK_SIZE - 1) / BLOCK_SIZE, (M + BLOCK_SIZE - 1) / BLOCK_SIZE);
-    matmul_kernel_4<<<gridSize, blockSize>>>(d_A, d_B, d_C, M, N, K);
+    matmul_kernel_5<<<gridSize, blockSize>>>(d_A, d_B, d_C, M, N, K);
     
     cudaDeviceSynchronize();
     

@@ -1,0 +1,5 @@
+digraph "CFG for 'main' function" {
+	label="CFG for 'main' function";
+
+	Node0x5df815920870 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870" fontname="Courier",label="{entry:\l|  %0 = tail call ptr @tensor_alloc(i32 243237764)\l  %1 = tail call ptr @tensor_alloc(i32 49)\l  %2 = tail call ptr @tensor_alloc(i32 4964036)\l  %3 = tail call ptr @tensor_alloc(i32 5000)\l  %4 = tail call ptr @tensor_alloc(i32 10000)\l  %5 = tail call ptr @tensor_alloc(i32 20000)\l  %6 = tail call ptr @tensor_alloc(i32 20000)\l  tail call void @tensor_matmul(ptr %6, ptr %3, ptr %4, i32 100, i32 50, i32\l... 200)\l  tail call void @tensor_free(ptr %0)\l  tail call void @tensor_free(ptr %1)\l  tail call void @tensor_free(ptr %2)\l  tail call void @tensor_free(ptr %3)\l  tail call void @tensor_free(ptr %4)\l  tail call void @tensor_free(ptr %6)\l  ret i32 0\l}"];
+}

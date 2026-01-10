@@ -1,0 +1,18 @@
+
+program bench_test_1
+tensor A[100,50];
+tensor B[50,200];
+tensor C[100,200];
+
+tensor CT[200,100];
+tensor D[200,50];
+
+tensor E[50,200];
+tensor F[50];
+begin
+C  := A @matmul B;
+CT := @transpose(C);
+D  := CT @matmul A;
+E  := @transpose(D);
+F  := @reduce(A, 0);
+end
